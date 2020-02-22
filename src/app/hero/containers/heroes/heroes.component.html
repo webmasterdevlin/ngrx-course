@@ -1,1 +1,8 @@
 <p>heroes works!</p>
+<div *ngFor="let item of list$ ? (list$ | async) : list">
+  <h2>{{ item?.firstName }}</h2>
+</div>
+
+<ng-template #loading>
+  <span>loading..</span>
+</ng-template>
