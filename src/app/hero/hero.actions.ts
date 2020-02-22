@@ -10,7 +10,7 @@ export const loadHeroesSuccess = createAction(
 
 export const loadHeroesFail = createAction(
   "[Hero] loadHeroesFail",
-  props<{ heroes: []; error: string }>()
+  props<{ heroes: Hero[]; error: string }>()
 );
 
 export const createHero = createAction(
@@ -45,12 +45,12 @@ export const updateHeroFail = createAction(
 
 export const deleteHero = createAction(
   "[Hero] deleteHero",
-  props<{ hero: Hero }>()
+  props<{ id: string }>()
 );
 
 export const deleteHeroSuccess = createAction(
   "[Hero] deleteHeroSuccess",
-  props<{ heroId: string }>()
+  props<{ id: string }>()
 );
 
 export const deleteHeroFail = createAction(

@@ -15,7 +15,7 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
   : [];
 
 export const selectHeroesState = (state: State) => state.heroes;
-export const selectHero = createSelector(
+export const selectHeroStore = createSelector(
   selectHeroesState,
-  (state: HeroState) => state.heroes
+  (state: HeroState) => state
 );

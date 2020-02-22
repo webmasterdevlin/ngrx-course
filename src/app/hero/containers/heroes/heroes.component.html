@@ -1,7 +1,43 @@
-<p>heroes works!</p>
-<div *ngFor="let item of list$ ? (list$ | async) : list">
-  <h2>{{ item?.firstName }}</h2>
-</div>
+<section *ngIf="!isLoading; else loading">
+  <h2>{{ isLoading }}</h2>
+  <div style="width: 100%" *ngFor="let hero of heroes">
+    <div>
+      <div *ngIf="editingTracker === hero.id">
+        <span>I'm a Form</span>
+        <!--        <app-form-->
+        <!--          [itemForm]="editedForm"-->
+        <!--          [text]="'UPDATE'"-->
+        <!--          (handleSubmit)="onUpdate()"-->
+        <!--        ></app-form>-->
+      </div>
+      <div *ngIf="editingTracker !== hero.id">
+        <h5>{{ hero.firstName }} {{ hero.lastName }} is {{ hero.knownAs }}</h5>
+        <p>{{ hero.house }}</p>
+      </div>
+      <div>
+        <button
+          *ngIf="editingTracker === hero.id"
+          (click)="editingTracker = '0'"
+        >
+          CANCEL
+        </button>
+
+        <button
+          *ngIf="editingTracker !== hero.id"
+          (click)="editingTracker = hero.id; editedForm.patchValue(hero)"
+        >
+          EDIT
+        </button>
+        <button (click)="goToHeroDetail(hero.id)">
+          DETAIL
+        </button>
+        <button (click)="removeHero(hero.id)">
+          DELETE
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <ng-template #loading>
   <span>loading..</span>

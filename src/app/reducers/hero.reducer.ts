@@ -21,58 +21,62 @@ export const heroReducer = createReducer(
   /*loads the list of heroes*/
   on(HeroActions.loadHeroes, state => ({
     ...state,
-    requesting: true
+    isLoading: true
   })),
   on(HeroActions.loadHeroesSuccess, (state, { heroes }) => ({
     ...state,
-    heroes
+    heroes,
+    isLoading: false
   })),
   on(HeroActions.loadHeroesFail, (state, { error }) => ({
     ...state,
     heroes: [],
-    error
+    error,
+    isLoading: false
   })),
   /*deletes a hero*/
   on(HeroActions.deleteHero, state => ({
     ...state,
-    requesting: true
+    isLoading: true
   })),
-  on(HeroActions.deleteHeroSuccess, (state, { heroId }) => ({
+  on(HeroActions.deleteHeroSuccess, (state, { id }) => ({
     ...state,
-    heroes: state.heroes.filter(v => v.id !== heroId),
-    requesting: false
+    heroes: state.heroes.filter(v => v.id !== id),
+    isLoading: false
   })),
   on(HeroActions.deleteHeroFail, (state, { error }) => ({
     ...state,
     error,
-    requesting: false
+    isLoading: false
   })),
   /*creates a hero*/
   on(HeroActions.createHero, state => ({
     ...state,
-    requesting: true
+    isLoading: true
   })),
   on(HeroActions.createHeroSuccess, (state, { hero }) => ({
     ...state,
-    heroes: [...state.heroes, hero]
+    heroes: [...state.heroes, hero],
+    isLoading: false
   })),
   on(HeroActions.createHeroFail, (state, { error }) => ({
     ...state,
     error,
-    requesting: false
+    isLoading: false
   })),
   /*updates a hero*/
   on(HeroActions.updateHero, state => ({
     ...state,
-    requesting: true
+    isLoading: true
   })),
   on(HeroActions.updateHeroSuccess, (state, { hero }) => ({
     ...state,
-    heroes: state.heroes.map(v => (v.id === hero.id ? hero : v))
+    heroes: state.heroes.map(v => (v.id === hero.id ? hero : v)),
+    isLoading: false
   })),
   on(HeroActions.updateHeroFail, (state, { error }) => ({
     ...state,
     error,
-    requesting: false
+    isLoading: false
   }))
 );
