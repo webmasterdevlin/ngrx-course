@@ -12,7 +12,7 @@ export class HeroEffects {
   loadHeroes$ = createEffect(() =>
     this.actions$.pipe(
       ofType(heroActions.loadHeroes),
-      tap(val => console.log("BEFORE MAP:", val)),
+      tap(val => console.log("loadHeroes$ BEFORE MAP:", val)),
       mergeMap(() =>
         this.heroService.getHeroes().pipe(
           map(heroes =>
@@ -20,23 +20,25 @@ export class HeroEffects {
               heroes
             })
           ),
-          catchError(err => of(heroActions.loadHeroesFail(err.message)))
+          catchError(error => of(heroActions.loadHeroesFail({ error })))
         )
       ),
-      tap(val => console.log("AFTER MAP:", val))
+      tap(val => console.log("loadHeroes$ AFTER MAP:", val))
     )
   );
 
   deleteHero$ = createEffect(() =>
     this.actions$.pipe(
       ofType(heroActions.deleteHero),
+      tap(val => console.log("deleteHero$ BEFORE MAP:", val)),
       map(action => action.id),
       mergeMap(id =>
         this.heroService.deleteHeroById(id).pipe(
           map(() => heroActions.deleteHeroSuccess({ id })),
-          catchError(err => of(heroActions.deleteHeroFail(err.message)))
+          catchError(error => of(heroActions.deleteHeroFail({ error })))
         )
-      )
+      ),
+      tap(val => console.log("deleteHero$ AFTER MAP:", val))
     )
   );
 
@@ -47,7 +49,9 @@ export class HeroEffects {
       mergeMap(hero =>
         this.heroService.postHero(hero).pipe(
           map(hero => heroActions.createHeroSuccess({ hero })),
-          catchError(err => of(heroActions.createHeroFail(err.message)))
+          catchError(err =>
+            of(heroActions.createHeroFail({ error: err.message }))
+          )
         )
       )
     )
