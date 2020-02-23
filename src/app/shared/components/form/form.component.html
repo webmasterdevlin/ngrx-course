@@ -40,7 +40,12 @@
     <mat-label>Known as</mat-label>
     <input matInput type="text" formControlName="knownAs" autocomplete="none" />
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="fn.invalid || ln.invalid"
+  >
     {{ text }}
   </button>
 </form>

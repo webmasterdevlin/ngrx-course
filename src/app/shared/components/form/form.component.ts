@@ -21,6 +21,6 @@ export class FormComponent {
   }
 
   get ln() {
-    return this.itemForm.get("firstName");
+    return this.itemForm.get("lastName");
   }
 }
