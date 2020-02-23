@@ -44,7 +44,7 @@ export class HeroEffects {
       map(action => action.hero),
       mergeMap(hero =>
         this.heroService.postHero(hero).pipe(
-          map(hero => heroActions.createHeroSuccess({ hero })),
+          map(res => heroActions.createHeroSuccess({ hero: res })),
           catchError(err =>
             of(heroActions.createHeroFail({ error: err.message }))
           )

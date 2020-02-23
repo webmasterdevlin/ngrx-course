@@ -31,7 +31,6 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     SharedModule,
     StoreModule.forRoot(reducers, {
       metaReducers,

@@ -53,11 +53,21 @@ export class HeroesComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    this.store.dispatch(createHero(this.itemForm.value));
+    // stop here if form is invalid
+    if (this.itemForm.invalid) {
+      return;
+    }
+
+    this.store.dispatch(createHero({ hero: this.itemForm.value }));
   }
 
   onUpdate() {
-    this.store.dispatch(updateHero(this.editedForm.value));
+    // stop here if form is invalid
+    if (this.editedForm.invalid) {
+      return;
+    }
+
+    this.store.dispatch(updateHero({ hero: this.editedForm.value }));
   }
 
   goToHeroDetail(id: string) {
@@ -66,16 +76,16 @@ export class HeroesComponent implements OnInit, OnDestroy {
 
   private formBuilderInit(): void {
     this.itemForm = this.fb.group({
-      firstName: ["", Validators.required],
-      lastName: ["", Validators.required],
+      firstName: ["", [Validators.required, Validators.minLength(4)]],
+      lastName: ["", [Validators.required, Validators.minLength(4)]],
       house: [""],
       knownAs: [""]
     });
 
     this.editedForm = this.fb.group({
       id: [""],
-      firstName: ["", Validators.required],
-      lastName: ["", Validators.required],
+      firstName: ["", [Validators.required, Validators.minLength(4)]],
+      lastName: ["", [Validators.required, Validators.minLength(4)]],
       house: [""],
       knownAs: [""]
     });

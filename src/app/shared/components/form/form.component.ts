@@ -15,4 +15,12 @@ export class FormComponent {
   onSubmit() {
     this.handleSubmit.emit();
   }
+
+  get fn() {
+    return this.itemForm.get("firstName");
+  }
+
+  get ln() {
+    return this.itemForm.get("firstName");
+  }
 }
