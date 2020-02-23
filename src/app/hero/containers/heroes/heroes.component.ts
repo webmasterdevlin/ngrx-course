@@ -7,8 +7,7 @@ import {
   loadHeroes,
   updateHero
 } from "../../hero.actions";
-import { Subscription, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Subscription } from "rxjs";
 import { Hero } from "../../hero.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -23,7 +22,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
   itemForm: FormGroup;
   editedForm: FormGroup;
   sub: Subscription;
-
+  error = "";
   isLoading = false;
   editingTracker = "0";
 
@@ -38,9 +37,10 @@ export class HeroesComponent implements OnInit, OnDestroy {
     this.store.dispatch(loadHeroes());
     this.sub = this.store
       .select(selectHeroStore)
-      .subscribe(({ heroes, isLoading }) => {
+      .subscribe(({ heroes, isLoading, error }) => {
         this.heroes = heroes;
         this.isLoading = isLoading;
+        this.error = error;
       });
   }
 

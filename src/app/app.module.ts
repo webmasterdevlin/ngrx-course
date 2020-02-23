@@ -15,6 +15,7 @@ import { environment } from "../environments/environment";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HttpClientModule } from "@angular/common/http";
 import { storeLogger } from "ngrx-store-logger";
+import { SharedModule } from "./shared/shared.module";
 
 export function logger(reducer: ActionReducer<State>): any {
   return storeLogger()(reducer);
@@ -31,7 +32,7 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedMaterialModule,
+    SharedModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
