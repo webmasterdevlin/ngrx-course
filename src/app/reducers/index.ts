@@ -1,5 +1,4 @@
-import { ActionReducerMap, createSelector, MetaReducer } from "@ngrx/store";
-import { environment } from "../../environments/environment";
+import { ActionReducerMap, createSelector } from "@ngrx/store";
 import { heroReducer, HeroState } from "./hero.reducer";
 
 export interface State {
@@ -9,10 +8,6 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
   heroes: heroReducer
 };
-
-export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? []
-  : [];
 
 export const selectHeroesState = (state: State) => state.heroes;
 export const selectHeroStore = createSelector(

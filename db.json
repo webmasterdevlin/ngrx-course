@@ -27,13 +27,6 @@
       "lastName": "Wayne",
       "house": "DC",
       "knownAs": "Batman"
-    },
-    {
-      "firstName": "John",
-      "lastName": "Wick",
-      "house": "none",
-      "knownAs": "",
-      "id": "3ijNPOq"
     }
   ],
   "villains": [

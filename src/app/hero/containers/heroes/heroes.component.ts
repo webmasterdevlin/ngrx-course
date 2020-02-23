@@ -59,6 +59,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
     }
 
     this.store.dispatch(createHero({ hero: this.itemForm.value }));
+
+    this.itemForm.reset();
   }
 
   onUpdate() {
