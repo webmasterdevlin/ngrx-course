@@ -41,7 +41,7 @@ export const heroReducer = createReducer(
   })),
   on(HeroActions.deleteHeroSuccess, (state, { id }) => ({
     ...state,
-    heroes: state.heroes.filter(v => v.id !== id),
+    heroes: state.heroes.filter(h => h.id !== id),
     isLoading: false
   })),
   on(HeroActions.deleteHeroFail, (state, { error }) => ({
@@ -71,7 +71,7 @@ export const heroReducer = createReducer(
   })),
   on(HeroActions.updateHeroSuccess, (state, { hero }) => ({
     ...state,
-    heroes: state.heroes.map(v => (v.id === hero.id ? hero : v)),
+    heroes: state.heroes.map(h => (h.id === hero.id ? hero : h)),
     isLoading: false
   })),
   on(HeroActions.updateHeroFail, (state, { error }) => ({
