@@ -11,7 +11,6 @@ import { SharedMaterialModule } from "./shared-material.module";
     SharedMaterialModule,
     CommonModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" })
   ],
   exports: [
@@ -19,8 +18,8 @@ import { SharedMaterialModule } from "./shared-material.module";
     SharedMaterialModule,
     CommonModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule
   ]
 })
+
 export class SharedModule {}

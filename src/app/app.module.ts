@@ -15,7 +15,8 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { storeLogger } from "ngrx-store-logger";
 import { SharedModule } from "./shared/shared.module";
 import { HeroEffects } from "./store/effects/hero.effects";
-import {reducers, State} from './store';
+import { reducers, State } from "./store";
+import { CoreModule } from "./core/core.module";
 
 export function logger(reducer: ActionReducer<State>): any {
   return storeLogger()(reducer);
@@ -29,6 +30,7 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
   declarations: [AppComponent, NavBarComponent],
   imports: [
     BrowserModule,
+    CoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
