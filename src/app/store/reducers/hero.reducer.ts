@@ -1,6 +1,6 @@
-import { Hero } from "../hero/hero.model";
 import { createReducer, on } from "@ngrx/store";
-import * as HeroActions from "../hero/hero.actions";
+import * as HeroActions from "../actions/hero.actions";
+import { Hero } from "../../features/hero/hero.model";
 
 export interface HeroState {
   heroes: Hero[];

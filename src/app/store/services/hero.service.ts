@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
-import { environment } from "../../environments/environment";
+
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
-import { Hero } from "./hero.model";
+import { Hero } from "../../features/hero/hero.model";
 import { catchError } from "rxjs/operators";
+import { environment } from "../../../environments/environment";
 
 @Injectable({ providedIn: "root" })
 export class HeroService {

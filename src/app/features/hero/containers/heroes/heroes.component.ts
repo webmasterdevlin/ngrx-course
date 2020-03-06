@@ -1,16 +1,17 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { selectHeroStore, State } from "../../../reducers";
+
 import {
   createHero,
   deleteHero,
   loadHeroes,
   updateHero
-} from "../../hero.actions";
+} from "../../../../store/actions";
 import { Subscription } from "rxjs";
 import { Hero } from "../../hero.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { selectHeroStore, State } from "../../../../store";
 
 @Component({
   selector: "app-heroes",

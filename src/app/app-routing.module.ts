@@ -9,7 +9,8 @@ const routes: Routes = [
   },
   {
     path: "heroes",
-    loadChildren: () => import("./hero/heroes.module").then(m => m.HeroesModule)
+    loadChildren: () =>
+      import("./features/hero/heroes.module").then(m => m.HeroesModule)
   },
   {
     path: "**",

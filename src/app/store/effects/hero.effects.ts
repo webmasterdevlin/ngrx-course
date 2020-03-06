@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { HeroService } from "./hero.service";
+import { HeroService } from "../services";
 import { catchError, map, mergeMap } from "rxjs/operators";
 import { of } from "rxjs";
-import * as heroActions from "./hero.actions";
+import * as heroActions from "../actions";
 
 @Injectable()
 export class HeroEffects {

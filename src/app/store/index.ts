@@ -1,5 +1,5 @@
 import { ActionReducerMap, createSelector } from "@ngrx/store";
-import { heroReducer, HeroState } from "./hero.reducer";
+import { heroReducer, HeroState } from "./reducers/hero.reducer";
 
 export interface State {
   heroes: HeroState;
