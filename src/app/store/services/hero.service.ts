@@ -6,7 +6,7 @@ import { Hero } from "../../features/hero/hero.model";
 import { catchError } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 
-@Injectable({ providedIn: "root" })
+@Injectable()
 export class HeroService {
   path = environment.apiUrlBase + "heroes";
 

@@ -14,9 +14,9 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 import { storeLogger } from "ngrx-store-logger";
 import { SharedModule } from "./shared/shared.module";
-import { HeroEffects } from "./store/effects/hero.effects";
 import { reducers, State } from "./store";
 import { CoreModule } from "./core/core.module";
+import { AppStoreModule } from "./store/app-store.module";
 
 export function logger(reducer: ActionReducer<State>): any {
   return storeLogger()(reducer);
@@ -32,6 +32,7 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
     BrowserModule,
     CoreModule,
     AppRoutingModule,
+    AppStoreModule,
     BrowserAnimationsModule,
     SharedModule,
     StoreModule.forRoot(reducers, {
@@ -46,10 +47,9 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
     StoreRouterConnectingModule.forRoot({
       routerState: RouterState.Minimal
     }),
-    EffectsModule.forRoot([HeroEffects]),
+    EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

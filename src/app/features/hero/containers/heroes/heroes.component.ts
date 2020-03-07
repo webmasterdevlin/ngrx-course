@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-
+import { untilDestroyed } from "ngx-take-until-destroy";
 import {
   createHero,
   deleteHero,
   loadHeroes,
   updateHero
 } from "../../../../store/actions";
-import { Subscription } from "rxjs";
 import { Hero } from "../../hero.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -22,7 +21,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
   heroes: Hero[];
   itemForm: FormGroup;
   editedForm: FormGroup;
-  sub: Subscription;
   error = "";
   isLoading = false;
   editingTracker = "0";
@@ -36,8 +34,9 @@ export class HeroesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.formBuilderInit();
     this.store.dispatch(loadHeroes());
-    this.sub = this.store
+    this.store
       .select(selectHeroStore)
+      .pipe(untilDestroyed(this))
       .subscribe(({ heroes, isLoading, error }) => {
         this.heroes = heroes;
         this.isLoading = isLoading;
@@ -45,9 +44,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 
   removeHero(id: string) {
     this.store.dispatch(deleteHero({ id }));
