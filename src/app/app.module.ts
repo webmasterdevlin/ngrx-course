@@ -17,6 +17,7 @@ import { SharedModule } from "./shared/shared.module";
 import { reducers, State } from "./store";
 import { CoreModule } from "./core/core.module";
 import { AppStoreModule } from "./store/app-store.module";
+import { HeroEffects } from "./store/effects/hero.effects";
 
 export function logger(reducer: ActionReducer<State>): any {
   return storeLogger()(reducer);
@@ -47,7 +48,7 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
     StoreRouterConnectingModule.forRoot({
       routerState: RouterState.Minimal
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([HeroEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   bootstrap: [AppComponent]

@@ -1,5 +1,3 @@
-import { EntityState } from "@ngrx/entity";
-
 export interface Hero {
   id: string;
   firstName: string;
@@ -7,5 +5,3 @@ export interface Hero {
   house: string;
   knownAs: string;
 }
-
-export interface HeroState extends EntityState<Hero> {}
