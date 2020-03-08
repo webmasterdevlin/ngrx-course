@@ -44,6 +44,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
       });
   }
 
+  // this is needed in untilDestroyed
   ngOnDestroy(): void {}
 
   removeHero(id: string) {
