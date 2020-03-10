@@ -37,13 +37,7 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
     BrowserAnimationsModule,
     SharedModule,
     StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictActionImmutability: true,
-        strictActionSerializability: true,
-        strictStateImmutability: true,
-        strictStateSerializability: true
-      }
+      metaReducers
     }),
     StoreRouterConnectingModule.forRoot({
       routerState: RouterState.Minimal
