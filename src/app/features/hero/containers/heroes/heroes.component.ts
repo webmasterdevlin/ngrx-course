@@ -6,7 +6,7 @@ import {
   deleteHero,
   loadHeroes,
   updateHero
-} from "../../../../store/actions";
+} from "../../../../store/actions/hero.actions";
 import { Hero } from "../../hero.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";

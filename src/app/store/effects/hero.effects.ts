@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { HeroService } from "../services";
 import { catchError, map, mergeMap } from "rxjs/operators";
 import { of } from "rxjs";
-import * as heroActions from "../actions";
+import * as heroActions from "../actions/hero.actions";
 
 @Injectable()
 export class HeroEffects {
