@@ -33,6 +33,13 @@ export class HeroesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.formBuilderInit();
+    this.fetchHeroes();
+  }
+
+  // this is needed in untilDestroyed
+  ngOnDestroy(): void {}
+
+  fetchHeroes() {
     this.store.dispatch(loadHeroes());
     this.store
       .select(selectHeroStore)
@@ -43,9 +50,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
         this.error = error;
       });
   }
-
-  // this is needed in untilDestroyed
-  ngOnDestroy(): void {}
 
   removeHero(id: string) {
     this.store.dispatch(deleteHero({ id }));
