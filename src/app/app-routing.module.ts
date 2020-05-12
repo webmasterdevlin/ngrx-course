@@ -5,21 +5,28 @@ const routes: Routes = [
   {
     path: "",
     redirectTo: "heroes",
-    pathMatch: "full"
+    pathMatch: "full",
   },
   {
     path: "heroes",
     loadChildren: () =>
-      import("./features/hero/heroes.module").then(m => m.HeroesModule)
+      import("./features/hero/heroes.module").then((m) => m.HeroesModule),
+  },
+  {
+    path: "villains",
+    loadChildren: () =>
+      import("./features/villain/villains.module").then(
+        (m) => m.VillainsModule
+      ),
   },
   {
     path: "**",
-    redirectTo: ""
-  }
+    redirectTo: "",
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

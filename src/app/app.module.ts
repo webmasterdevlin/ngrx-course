@@ -18,6 +18,7 @@ import { reducers, State } from "./store";
 import { CoreModule } from "./core/core.module";
 import { AppStoreModule } from "./store/app-store.module";
 import { HeroEffects } from "./store/effects/hero.effects";
+import { VillainEffects } from "./store/effects/villain.effects";
 
 export function logger(reducer: ActionReducer<State>): any {
   return storeLogger()(reducer);
@@ -37,14 +38,14 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
     BrowserAnimationsModule,
     SharedModule,
     StoreModule.forRoot(reducers, {
-      metaReducers
+      metaReducers,
     }),
     StoreRouterConnectingModule.forRoot({
-      routerState: RouterState.Minimal
+      routerState: RouterState.Minimal,
     }),
-    EffectsModule.forRoot([HeroEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    EffectsModule.forRoot([HeroEffects, VillainEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
-import { HeroService } from "./services";
+import { HeroService, VillainService } from "./services";
 
 @NgModule({
   imports: [],
-  providers: [HeroService]
+  providers: [HeroService, VillainService],
 })
 export class AppStoreModule {}
