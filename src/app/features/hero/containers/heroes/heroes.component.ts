@@ -5,7 +5,7 @@ import {
   createHero,
   deleteHero,
   loadHeroes,
-  updateHero
+  updateHero,
 } from "../../../../store/actions/hero.actions";
 import { Hero } from "../../hero.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -15,9 +15,10 @@ import { selectHeroStore, State } from "../../../../store";
 @Component({
   selector: "app-heroes",
   templateUrl: "./heroes.component.html",
-  styleUrls: ["./heroes.component.css"]
+  styleUrls: ["./heroes.component.css"],
 })
 export class HeroesComponent implements OnInit, OnDestroy {
+  trackerReset = "0";
   heroes: Hero[];
   itemForm: FormGroup;
   editedForm: FormGroup;
@@ -73,6 +74,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
     }
 
     this.store.dispatch(updateHero({ hero: this.editedForm.value }));
+    this.editingTracker = this.trackerReset;
   }
 
   goToHeroDetail(id: string) {
@@ -84,7 +86,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
       firstName: ["", [Validators.required, Validators.minLength(4)]],
       lastName: ["", [Validators.required, Validators.minLength(4)]],
       house: [""],
-      knownAs: [""]
+      knownAs: [""],
     });
 
     this.editedForm = this.fb.group({
@@ -92,7 +94,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
       firstName: ["", [Validators.required, Validators.minLength(4)]],
       lastName: ["", [Validators.required, Validators.minLength(4)]],
       house: [""],
-      knownAs: [""]
+      knownAs: [""],
     });
   }
 }
