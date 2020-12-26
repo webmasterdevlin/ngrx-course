@@ -77,8 +77,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
     this.editingTracker = this.trackerReset;
   }
 
-  goToHeroDetail(id: string) {
-    this.router.navigateByUrl("/heroes/hero-detail/" + id);
+  async goToHeroDetail(id: string) {
+    await this.router.navigateByUrl("/heroes/hero-detail/" + id);
   }
 
   private formBuilderInit(): void {

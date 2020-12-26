@@ -75,8 +75,8 @@ export class VillainsComponent implements OnInit, OnDestroy {
     this.store.dispatch(updateVillain({ villain: this.editedForm.value }));
   }
 
-  goToVillainDetail(id: string) {
-    this.router.navigateByUrl("/villains/villain-detail/" + id);
+  async goToVillainDetail(id: string) {
+    await this.router.navigateByUrl("/villains/villain-detail/" + id);
   }
 
   private formBuilderInit(): void {

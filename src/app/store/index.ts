@@ -13,13 +13,15 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 export const selectHeroesState = (state: State) => state.heroes;
+
 export const selectHeroStore = createSelector(
   selectHeroesState,
-  (state: HeroState) => state
+  (state) => state
 );
 
 export const selectVillainsState = (state: State) => state.villains;
+
 export const selectVillainStore = createSelector(
   selectVillainsState,
-  (state: VillainState) => state
+  (state) => state
 );

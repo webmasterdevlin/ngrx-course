@@ -34,6 +34,7 @@ export const heroReducer = createReducer(
     error,
     isLoading: false
   })),
+
   /*deletes a hero*/
   on(HeroActions.deleteHero, state => ({
     ...state,
