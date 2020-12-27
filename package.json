@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "backend": "json-server --watch db.json --port 5000 --delay=1000",
-    "start:fullstack": "concurrently \"npm run backend\" \"npm run serve\""
+    "serve:fullstack": "concurrently \"npm run backend\" \"npm run serve\""
   },
   "private": true,
   "dependencies": {
