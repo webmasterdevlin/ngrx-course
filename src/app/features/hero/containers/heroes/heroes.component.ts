@@ -18,7 +18,6 @@ import { selectHeroStore, State } from "../../../../store";
   styleUrls: ["./heroes.component.css"],
 })
 export class HeroesComponent implements OnInit, OnDestroy {
-  trackerReset = "0";
   heroes: Hero[];
   itemForm: FormGroup;
   editedForm: FormGroup;
@@ -74,7 +73,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
     }
 
     this.store.dispatch(updateHero({ hero: this.editedForm.value }));
-    this.editingTracker = this.trackerReset;
   }
 
   async goToHeroDetail(id: string) {
