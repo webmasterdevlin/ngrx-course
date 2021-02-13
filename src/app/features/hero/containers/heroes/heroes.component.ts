@@ -56,22 +56,10 @@ export class HeroesComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    // stop here if form is invalid
-    if (this.itemForm.invalid) {
-      return;
-    }
-
     this.store.dispatch(createHero({ hero: this.itemForm.value }));
-
-    this.itemForm.reset();
   }
 
   onUpdate() {
-    // stop here if form is invalid
-    if (this.editedForm.invalid) {
-      return;
-    }
-
     this.store.dispatch(updateHero({ hero: this.editedForm.value }));
   }
 

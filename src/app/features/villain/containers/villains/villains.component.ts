@@ -56,22 +56,10 @@ export class VillainsComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    // stop here if form is invalid
-    if (this.itemForm.invalid) {
-      return;
-    }
-
     this.store.dispatch(createVillain({ villain: this.itemForm.value }));
-
-    this.itemForm.reset();
   }
 
   onUpdate() {
-    // stop here if form is invalid
-    if (this.editedForm.invalid) {
-      return;
-    }
-
     this.store.dispatch(updateVillain({ villain: this.editedForm.value }));
   }
 

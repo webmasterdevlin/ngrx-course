@@ -1,9 +1,8 @@
 <div *ngIf="editingTracker === '0'">
   <app-form
     [itemForm]="itemForm"
-    [text]="isLoading ? 'SENDING':'SAVE'"
+    [text]="'SAVE'"
     (handleSubmit)="onSave()"
-    
   ></app-form>
 </div>
 <app-character-list></app-character-list>
