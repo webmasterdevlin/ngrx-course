@@ -80,5 +80,10 @@ export const villainReducer = createReducer(
     ...state,
     error,
     isLoading: false,
+  })),
+
+  on(VillainActions.softDeleteVillain, (state, { id }) => ({
+    ...state,
+    villains: state.villains.filter((h) => h.id !== id),
   }))
 );

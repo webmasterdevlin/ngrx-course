@@ -57,3 +57,8 @@ export const updateVillainFail = createAction(
   "[Villain] updateVillainFail",
   props<{ error: string }>()
 );
+
+export const softDeleteVillain = createAction(
+  "[Villain] softDeleteVillain",
+  props<{ id: string }>()
+);

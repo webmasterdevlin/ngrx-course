@@ -9,6 +9,7 @@ import {
   deleteVillain,
   createVillain,
   updateVillain,
+  softDeleteVillain,
 } from "src/app/store/actions/villain.actions";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
@@ -63,6 +64,10 @@ export class VillainsComponent implements OnInit {
 
   handleNavigateVillainDetail(id: string) {
     this.router.navigateByUrl("/villains/villain-detail/" + id);
+  }
+
+  handleSoftDeleteVillain(id: string) {
+    this.store.dispatch(softDeleteVillain({ id }));
   }
 
   private formBuilderInit(): void {
