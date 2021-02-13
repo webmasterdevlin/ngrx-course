@@ -49,19 +49,19 @@ export class HeroesComponent implements OnInit {
       });
   }
 
-  removeHero(id: string) {
+  handleDeleteHero(id: string) {
     this.store.dispatch(deleteHero({ id }));
   }
 
-  onSave() {
+  handleCreateHero() {
     this.store.dispatch(createHero({ hero: this.itemForm.value }));
   }
 
-  onUpdate() {
+  handleUpdateHero() {
     this.store.dispatch(updateHero({ hero: this.editedForm.value }));
   }
 
-  async goToHeroDetail(id: string) {
+  async handleNavigateHeroDetail(id: string) {
     await this.router.navigateByUrl("/heroes/hero-detail/" + id);
   }
 
