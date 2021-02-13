@@ -14,12 +14,12 @@ export class HeroEffects {
       ofType(heroActions.loadHeroes),
       mergeMap(() =>
         this.heroService.getHeroes().pipe(
-          map(heroes =>
+          map((heroes) =>
             heroActions.loadHeroesSuccess({
-              heroes
+              heroes,
             })
           ),
-          catchError(error => of(heroActions.loadHeroesFail({ error })))
+          catchError((error) => of(heroActions.loadHeroesFail({ error })))
         )
       )
     )
@@ -28,11 +28,11 @@ export class HeroEffects {
   deleteHero$ = createEffect(() =>
     this.actions$.pipe(
       ofType(heroActions.deleteHero),
-      map(action => action.id),
-      mergeMap(id =>
-        this.heroService.deleteHeroById(id).pipe(
+      map((action) => action.id),
+      mergeMap((id) =>
+        this.heroService.deleteHero(id).pipe(
           map(() => heroActions.deleteHeroSuccess({ id })),
-          catchError(error => of(heroActions.deleteHeroFail({ error })))
+          catchError((error) => of(heroActions.deleteHeroFail({ error })))
         )
       )
     )
@@ -41,11 +41,11 @@ export class HeroEffects {
   createHero$ = createEffect(() =>
     this.actions$.pipe(
       ofType(heroActions.createHero),
-      map(action => action.hero),
-      mergeMap(hero =>
+      map((action) => action.hero),
+      mergeMap((hero) =>
         this.heroService.postHero(hero).pipe(
-          map(res => heroActions.createHeroSuccess({ hero: res })),
-          catchError(err =>
+          map((res) => heroActions.createHeroSuccess({ hero: res })),
+          catchError((err) =>
             of(heroActions.createHeroFail({ error: err.message }))
           )
         )
@@ -56,11 +56,11 @@ export class HeroEffects {
   updateHero$ = createEffect(() =>
     this.actions$.pipe(
       ofType(heroActions.updateHero),
-      map(action => action.hero),
-      mergeMap(hero =>
+      map((action) => action.hero),
+      mergeMap((hero) =>
         this.heroService.putHero(hero).pipe(
           map(() => heroActions.updateHeroSuccess({ hero })),
-          catchError(err => of(heroActions.updateHeroFail(err.message)))
+          catchError((err) => of(heroActions.updateHeroFail(err.message)))
         )
       )
     )

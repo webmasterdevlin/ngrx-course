@@ -18,7 +18,7 @@ export class HeroService {
       .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
   }
 
-  deleteHeroById(id: string): Observable<void> {
+  deleteHero(id: string): Observable<void> {
     return this.http
       .delete<void>(`${this.path}/${id}`)
       .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));

@@ -33,7 +33,7 @@ export class VillainEffects {
       ofType(villainActions.deleteVillain),
       map((action) => action.id),
       mergeMap((id) =>
-        this.villainService.deleteVillainById(id).pipe(
+        this.villainService.deleteVillain(id).pipe(
           map(() => villainActions.deleteVillainSuccess({ id })),
           catchError((error) => of(villainActions.deleteVillainFail({ error })))
         )

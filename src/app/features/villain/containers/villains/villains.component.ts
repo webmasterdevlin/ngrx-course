@@ -49,20 +49,20 @@ export class VillainsComponent implements OnInit {
       });
   }
 
-  removeVillain(id: string) {
+  handleDeleteVillain(id: string) {
     this.store.dispatch(deleteVillain({ id }));
   }
 
-  onSave() {
+  handleCreateVillain() {
     this.store.dispatch(createVillain({ villain: this.itemForm.value }));
   }
 
-  onUpdate() {
+  handleUpdateVillain() {
     this.store.dispatch(updateVillain({ villain: this.editedForm.value }));
   }
 
-  async goToVillainDetail(id: string) {
-    await this.router.navigateByUrl("/villains/villain-detail/" + id);
+  handleNavigateVillainDetail(id: string) {
+    this.router.navigateByUrl("/villains/villain-detail/" + id);
   }
 
   private formBuilderInit(): void {

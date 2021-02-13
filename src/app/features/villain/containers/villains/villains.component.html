@@ -2,7 +2,7 @@
   <app-form
     [itemForm]="itemForm"
     [text]="'SAVE'"
-    (handleSubmit)="onSave()"
+    (handleSubmit)="handleCreateVillain()"
   ></app-form>
 </div>
 <app-character-list></app-character-list>
@@ -17,7 +17,7 @@
           <app-form
             [itemForm]="editedForm"
             [text]="isLoading ? 'SENDING':'UPDATE'"
-            (handleSubmit)="onUpdate()"
+            (handleSubmit)="handleUpdateVillain()"
           ></app-form>
         </mat-card-content>
       </div>
@@ -53,11 +53,11 @@
         <button
           mat-raised-button
           color="info"
-          (click)="goToVillainDetail(villain.id)"
+          (click)="handleNavigateVillainDetail(villain.id)"
          >
           DETAIL
         </button>
-        <button mat-raised-button color="warn" (click)="removeVillain(villain.id)">
+        <button mat-raised-button color="warn" (click)="handleDeleteVillain(villain.id)">
           DELETE
         </button>
       </mat-card-actions>
