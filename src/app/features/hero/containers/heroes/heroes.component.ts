@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { untilDestroyed } from "ngx-take-until-destroy";
-import {
-  createHero,
-  deleteHero,
-  loadHeroes,
-  updateHero,
-} from "../../../../store/actions/hero.actions";
-import { Hero } from "../../hero.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { selectHeroStore, State } from "../../../../store";
+import { Hero } from "../../hero.model";
+import { selectHeroStore, State } from "src/app/store";
+import {
+  loadHeroes,
+  deleteHero,
+  createHero,
+  updateHero,
+} from "src/app/store/actions/hero.actions";
 
 @Component({
   selector: "app-heroes",

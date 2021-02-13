@@ -1,20 +1,22 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { untilDestroyed } from "ngx-take-until-destroy";
 import { Hero } from "src/app/features/hero/hero.model";
 import { Villain } from "src/app/features/villain/villain.model";
-import { selectHeroStore, selectVillainStore, State } from "../../../store";
+import { selectHeroStore, selectVillainStore, State } from "src/app/store";
 
 @Component({
   selector: "app-character-list",
   templateUrl: "./character-list.component.html",
   styleUrls: ["./character-list.component.css"],
 })
-export class CharacterListComponent implements OnDestroy {
+export class CharacterListComponent implements OnInit, OnDestroy {
   heroes: Hero[];
   villains: Villain[];
 
-  constructor(private store: Store<State>) {
+  constructor(private store: Store<State>) {}
+
+  ngOnInit(): void {
     this.fetchHeroes();
     this.fetchVillains();
   }

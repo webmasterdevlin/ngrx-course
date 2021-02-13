@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { untilDestroyed } from "ngx-take-until-destroy";
-import {
-  createVillain,
-  deleteVillain,
-  loadVillains,
-  updateVillain,
-} from "../../../../store/actions/villain.actions";
-import { Villain } from "../../villain.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { selectVillainStore, State } from "../../../../store";
+import { Villain } from "../../villain.model";
+import { selectVillainStore, State } from "src/app/store";
+import {
+  loadVillains,
+  deleteVillain,
+  createVillain,
+  updateVillain,
+} from "src/app/store/actions/villain.actions";
 
 @Component({
   selector: "app-villains",
