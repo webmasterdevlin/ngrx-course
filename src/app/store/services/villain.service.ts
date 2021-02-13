@@ -35,10 +35,4 @@ export class VillainService {
       .put<void>(`${this.path}/${updatedVillain.id}`, updatedVillain)
       .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
   }
-
-  getVillainById(id: string): Observable<Villain> {
-    return this.http
-      .get<Villain>(`${this.path}/${id}`)
-      .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
-  }
 }

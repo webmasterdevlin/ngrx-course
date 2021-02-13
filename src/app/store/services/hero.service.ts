@@ -35,10 +35,4 @@ export class HeroService {
       .put<void>(`${this.path}/${updatedHero.id}`, updatedHero)
       .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
   }
-
-  getHeroById(id: string): Observable<Hero> {
-    return this.http
-      .get<Hero>(`${this.path}/${id}`)
-      .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
-  }
 }
