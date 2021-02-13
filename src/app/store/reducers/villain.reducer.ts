@@ -4,20 +4,19 @@ import { Villain } from "../../features/villain/villain.model";
 
 export interface VillainState {
   villains: Villain[];
-  villain: Villain;
   isLoading: boolean;
   error: string;
 }
 
 export const initialState: VillainState = {
   villains: [],
-  villain: {} as Villain,
   isLoading: false,
   error: "",
 };
 
 export const villainReducer = createReducer(
   initialState,
+
   /*loads the list of villains*/
   on(VillainActions.loadVillains, (state) => ({
     ...state,
@@ -34,6 +33,7 @@ export const villainReducer = createReducer(
     error,
     isLoading: false,
   })),
+
   /*deletes a villain*/
   on(VillainActions.deleteVillain, (state) => ({
     ...state,
@@ -49,6 +49,7 @@ export const villainReducer = createReducer(
     error,
     isLoading: false,
   })),
+
   /*creates a villain*/
   on(VillainActions.createVillain, (state) => ({
     ...state,
@@ -64,6 +65,7 @@ export const villainReducer = createReducer(
     error,
     isLoading: false,
   })),
+
   /*updates a villain*/
   on(VillainActions.updateVillain, (state) => ({
     ...state,
