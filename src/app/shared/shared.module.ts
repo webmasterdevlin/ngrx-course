@@ -3,9 +3,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { FormComponent } from "./components/form/form.component";
 import { SharedMaterialModule } from "./shared-material.module";
+import { CharacterListComponent } from "./components/character-list/character-list.component";
 
 @NgModule({
-  declarations: [FormComponent],
+  declarations: [FormComponent, CharacterListComponent],
   imports: [
     SharedMaterialModule,
     CommonModule,
@@ -14,6 +15,7 @@ import { SharedMaterialModule } from "./shared-material.module";
   ],
   exports: [
     FormComponent,
+    CharacterListComponent,
     SharedMaterialModule,
     CommonModule,
     FormsModule,
