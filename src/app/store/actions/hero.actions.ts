@@ -57,3 +57,8 @@ export const updateHeroFail = createAction(
   "[Hero] updateHeroFail",
   props<{ error: string }>()
 );
+
+export const softDeleteHero = createAction(
+  "[Hero] softDeleteHero",
+  props<{ id: string }>()
+);

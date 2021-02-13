@@ -80,5 +80,10 @@ export const heroReducer = createReducer(
     ...state,
     error,
     isLoading: false,
+  })),
+
+  on(HeroActions.softDeleteHero, (state, { id }) => ({
+    ...state,
+    heroes: state.heroes.filter((h) => h.id !== id),
   }))
 );

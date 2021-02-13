@@ -58,6 +58,9 @@
         >
           DETAIL
         </button>
+        <button mat-raised-button color="accent" (click)="handleSoftDeleteHero(hero.id)">
+          SOFT DELETE
+        </button>
         <button mat-raised-button color="warn" (click)="handleDeleteHero(hero.id)">
           DELETE
         </button>
