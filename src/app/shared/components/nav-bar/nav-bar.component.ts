@@ -19,9 +19,6 @@ export class NavBarComponent implements OnInit {
     this.getStore();
   }
 
-  // this is needed in untilDestroyed
-  ngOnDestroy(): void {}
-
   getStore() {
     this.store
       .select(selectHeroesState)
