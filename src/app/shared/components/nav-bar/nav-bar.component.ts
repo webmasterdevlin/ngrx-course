@@ -20,7 +20,11 @@ export class NavBarComponent implements OnInit {
     this.getStore();
   }
 
-  getStore() {
+  handleLoadHeroes() {
+    this.store.dispatch(loadHeroes());
+  }
+
+  private getStore() {
     this.store
       .select(selectHeroesState)
       .pipe(untilDestroyed(this))
@@ -34,9 +38,5 @@ export class NavBarComponent implements OnInit {
       .subscribe(({ villains }) => {
         this.totalVillains = villains.length;
       });
-  }
-
-  handleLoadHeroes() {
-    this.store.dispatch(loadHeroes());
   }
 }
