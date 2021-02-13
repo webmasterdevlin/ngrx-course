@@ -39,7 +39,6 @@ export const heroReducer = createReducer(
     ...state,
     isLoading: true,
   })),
-
   on(HeroActions.deleteHeroSuccess, (state, { id }) => ({
     ...state,
     heroes: state.heroes.filter((h) => h.id !== id),
@@ -61,7 +60,6 @@ export const heroReducer = createReducer(
     heroes: [...state.heroes, hero],
     isLoading: false,
   })),
-
   on(HeroActions.createHeroFail, (state, { error }) => ({
     ...state,
     error,
