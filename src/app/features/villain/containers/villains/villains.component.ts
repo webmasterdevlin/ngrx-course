@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Villain } from "../../villain.model";
@@ -11,6 +10,7 @@ import {
   createVillain,
   updateVillain,
 } from "src/app/store/actions/villain.actions";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
 @UntilDestroy()
 @Component({

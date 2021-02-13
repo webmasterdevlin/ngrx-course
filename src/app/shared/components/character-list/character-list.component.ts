@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { Hero } from "src/app/features/hero/hero.model";
 import { Villain } from "src/app/features/villain/villain.model";
 import { selectHeroStore, selectVillainStore, State } from "src/app/store";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
 @UntilDestroy()
 @Component({
