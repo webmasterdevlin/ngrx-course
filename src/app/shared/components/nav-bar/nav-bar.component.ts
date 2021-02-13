@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { Store } from "@ngrx/store";
-import { selectHeroesState, selectVillainsState, State } from "../../../store";
-import { untilDestroyed } from "ngx-take-until-destroy";
+import { selectHeroesState, selectVillainsState, State } from "src/app/store";
 
+@UntilDestroy()
 @Component({
   selector: "app-nav-bar",
   templateUrl: "./nav-bar.component.html",

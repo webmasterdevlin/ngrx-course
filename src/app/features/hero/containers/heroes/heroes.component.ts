@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { untilDestroyed } from "ngx-take-until-destroy";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Hero } from "../../hero.model";
@@ -12,12 +12,13 @@ import {
   updateHero,
 } from "src/app/store/actions/hero.actions";
 
+@UntilDestroy()
 @Component({
   selector: "app-heroes",
   templateUrl: "./heroes.component.html",
   styleUrls: ["./heroes.component.css"],
 })
-export class HeroesComponent implements OnInit, OnDestroy {
+export class HeroesComponent implements OnInit {
   heroes: Hero[];
   itemForm: FormGroup;
   editedForm: FormGroup;
@@ -35,9 +36,6 @@ export class HeroesComponent implements OnInit, OnDestroy {
     this.formBuilderInit();
     this.fetchHeroes();
   }
-
-  // this is needed in untilDestroyed
-  ngOnDestroy(): void {}
 
   fetchHeroes() {
     this.store.dispatch(loadHeroes());

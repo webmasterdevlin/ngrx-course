@@ -1,16 +1,17 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { untilDestroyed } from "ngx-take-until-destroy";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { Hero } from "src/app/features/hero/hero.model";
 import { Villain } from "src/app/features/villain/villain.model";
 import { selectHeroStore, selectVillainStore, State } from "src/app/store";
 
+@UntilDestroy()
 @Component({
   selector: "app-character-list",
   templateUrl: "./character-list.component.html",
   styleUrls: ["./character-list.component.css"],
 })
-export class CharacterListComponent implements OnInit, OnDestroy {
+export class CharacterListComponent implements OnInit {
   heroes: Hero[];
   villains: Villain[];
 
@@ -38,7 +39,4 @@ export class CharacterListComponent implements OnInit, OnDestroy {
         this.villains = villains;
       });
   }
-
-  // this is needed in untilDestroyed
-  ngOnDestroy(): void {}
 }
