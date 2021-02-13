@@ -62,12 +62,12 @@ export class HeroesComponent implements OnInit {
     this.store.dispatch(updateHero({ hero: this.editedForm.value }));
   }
 
-  handleNavigateHeroDetail(id: string) {
-    this.router.navigateByUrl("/heroes/hero-detail/" + id);
-  }
-
   handleSoftDeleteHero(id: string) {
     this.store.dispatch(softDeleteHero({ id }));
+  }
+
+  handleNavigateHeroDetail(id: string) {
+    this.router.navigateByUrl("/heroes/hero-detail/" + id);
   }
 
   private formBuilderInit(): void {
