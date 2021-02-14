@@ -15,7 +15,7 @@ export class HeroService {
   }
 
   deleteHero(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.path}/${id}gjgjhg`);
+    return this.http.delete<void>(`${this.path}/${id}`);
   }
 
   postHero(createdHero: Hero): Observable<Hero> {
