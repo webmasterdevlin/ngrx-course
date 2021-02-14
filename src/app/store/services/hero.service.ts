@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
+import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { Hero } from "../../features/hero/hero.model";
 import { catchError } from "rxjs/operators";
-import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class HeroService {
@@ -15,24 +14,24 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http
       .get<Hero[]>(this.path)
-      .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
+      .pipe(catchError((err) => throwError(err.message)));
   }
 
   deleteHero(id: string): Observable<void> {
     return this.http
       .delete<void>(`${this.path}/${id}`)
-      .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
+      .pipe(catchError((err) => throwError(err.message)));
   }
 
   postHero(createdHero: Hero): Observable<Hero> {
     return this.http
       .post<Hero>(this.path, createdHero)
-      .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
+      .pipe(catchError((err) => throwError(err.message)));
   }
 
   putHero(updatedHero: Hero): Observable<void> {
     return this.http
       .put<void>(`${this.path}/${updatedHero.id}`, updatedHero)
-      .pipe(catchError((err: HttpErrorResponse) => throwError(err.message)));
+      .pipe(catchError((err) => throwError(err.message)));
   }
 }
