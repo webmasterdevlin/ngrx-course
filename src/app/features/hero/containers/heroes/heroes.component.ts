@@ -23,7 +23,6 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[];
   itemForm: FormGroup;
   editedForm: FormGroup;
-  error = "";
   isLoading = false;
   editingTracker = "0";
 
@@ -43,10 +42,9 @@ export class HeroesComponent implements OnInit {
     this.store
       .select(selectHeroStore)
       .pipe(untilDestroyed(this))
-      .subscribe(({ heroes, isLoading, error }) => {
+      .subscribe(({ heroes, isLoading }) => {
         this.heroes = heroes;
         this.isLoading = isLoading;
-        this.error = error;
       });
   }
 

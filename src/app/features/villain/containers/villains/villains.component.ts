@@ -23,7 +23,6 @@ export class VillainsComponent implements OnInit {
   villains: Villain[];
   itemForm: FormGroup;
   editedForm: FormGroup;
-  error = "";
   isLoading = false;
   editingTracker = "0";
 
@@ -46,7 +45,6 @@ export class VillainsComponent implements OnInit {
       .subscribe(({ villains, isLoading, error }) => {
         this.villains = villains;
         this.isLoading = isLoading;
-        this.error = error;
       });
   }
 
