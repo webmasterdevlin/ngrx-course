@@ -37,17 +37,6 @@ export class HeroesComponent implements OnInit {
     this.fetchHeroes();
   }
 
-  fetchHeroes() {
-    this.store.dispatch(loadHeroes());
-    this.store
-      .select(selectHeroStore)
-      .pipe(untilDestroyed(this))
-      .subscribe(({ heroes, isLoading }) => {
-        this.heroes = heroes;
-        this.isLoading = isLoading;
-      });
-  }
-
   handleDeleteHero(id: string) {
     this.store.dispatch(deleteHero({ id }));
   }
@@ -66,6 +55,17 @@ export class HeroesComponent implements OnInit {
 
   handleNavigateHeroDetail(id: string) {
     this.router.navigateByUrl("/heroes/hero-detail/" + id);
+  }
+
+  private fetchHeroes() {
+    this.store.dispatch(loadHeroes());
+    this.store
+      .select(selectHeroStore)
+      .pipe(untilDestroyed(this))
+      .subscribe(({ heroes, isLoading }) => {
+        this.heroes = heroes;
+        this.isLoading = isLoading;
+      });
   }
 
   private formBuilderInit(): void {

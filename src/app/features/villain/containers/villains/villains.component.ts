@@ -33,19 +33,8 @@ export class VillainsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.formBuilderInit();
     this.fetchVillains();
-  }
-
-  fetchVillains() {
-    this.store.dispatch(loadVillains());
-    this.store
-      .select(selectVillainStore)
-      .pipe(untilDestroyed(this))
-      .subscribe(({ villains, isLoading, error }) => {
-        this.villains = villains;
-        this.isLoading = isLoading;
-      });
+    this.formBuilderInit();
   }
 
   handleDeleteVillain(id: string) {
@@ -66,6 +55,17 @@ export class VillainsComponent implements OnInit {
 
   handleSoftDeleteVillain(id: string) {
     this.store.dispatch(softDeleteVillain({ id }));
+  }
+
+  private fetchVillains() {
+    this.store.dispatch(loadVillains());
+    this.store
+      .select(selectVillainStore)
+      .pipe(untilDestroyed(this))
+      .subscribe(({ villains, isLoading, error }) => {
+        this.villains = villains;
+        this.isLoading = isLoading;
+      });
   }
 
   private formBuilderInit(): void {
