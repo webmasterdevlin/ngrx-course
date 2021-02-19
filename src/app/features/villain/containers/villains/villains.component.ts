@@ -3,7 +3,8 @@ import { Store } from "@ngrx/store";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Villain } from "../../villain.model";
-import { selectVillainStore, State } from "src/app/store";
+import { State } from "src/app/store";
+import { selectVillainStore } from "src/app/store/selectors/villain.selectors";
 import {
   loadVillains,
   deleteVillain,
