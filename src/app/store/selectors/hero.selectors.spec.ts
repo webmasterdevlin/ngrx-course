@@ -1,5 +1,5 @@
-import { initialState } from "./reducers/hero.reducer";
-import { selectHeroStore } from "./selectors/hero.selectors";
+import { initialState } from "../reducers/hero.reducer";
+import { selectHeroStore } from "../selectors/hero.selectors";
 
 describe("Selectors", () => {
   it("should select hero store", () => {
