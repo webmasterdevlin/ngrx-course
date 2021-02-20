@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { loadHeroes } from "src/app/store/actions/hero.actions";
 import { State } from "src/app/store";
+import { loadHeroes } from "src/app/store/actions/hero.actions";
 import { selectHeroesState } from "src/app/store/selectors/hero.selectors";
-import { selectVillainsState } from "src/app/store/selectors/villain.selectors";
 import { loadVillains } from "src/app/store/actions/villain.actions";
+import { selectVillainsState } from "src/app/store/selectors/villain.selectors";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
 @UntilDestroy()
