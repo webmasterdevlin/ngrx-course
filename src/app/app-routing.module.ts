@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { HeroesComponent } from "./features/hero/containers/heroes/heroes.component";
 
 const routes: Routes = [
   {
@@ -9,8 +10,7 @@ const routes: Routes = [
   },
   {
     path: "heroes",
-    loadChildren: () =>
-      import("./features/hero/heroes.module").then((m) => m.HeroesModule),
+    component: HeroesComponent, // Eager load only the default route
   },
   {
     path: "villains",
@@ -26,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
