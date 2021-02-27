@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import * as VillainActions from "../actions/villain.actions";
-import { Villain } from "../../features/villain/villain.model";
+import { Villain } from "src/app/features/villain/villain.model";
 
 export interface VillainState {
   villains: Villain[];

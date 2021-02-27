@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Villain } from "../../features/villain/villain.model";
+import { Villain } from "src/app/features/villain/villain.model";
 
 export const loadVillains = createAction("[Villain] loadVillains");
 
