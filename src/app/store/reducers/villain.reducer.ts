@@ -29,7 +29,6 @@ export const villainReducer = createReducer(
   })),
   on(VillainActions.loadVillainsFail, (state, { error }) => ({
     ...state,
-    villains: [],
     error,
     isLoading: false,
   })),
