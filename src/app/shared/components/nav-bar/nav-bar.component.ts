@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { State } from "src/app/store";
 import { loadHeroes } from "src/app/store/actions/hero.actions";
-import { selectHeroesState } from "src/app/store/selectors/hero.selectors";
+import { selectHeroStore } from "src/app/store/selectors/hero.selectors";
 import { loadVillains } from "src/app/store/actions/villain.actions";
-import { selectVillainsState } from "src/app/store/selectors/villain.selectors";
+import { selectVillainStore } from "src/app/store/selectors/villain.selectors";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
 @UntilDestroy()
@@ -30,14 +30,14 @@ export class NavBarComponent implements OnInit {
 
   private getStore() {
     this.store
-      .select(selectHeroesState)
+      .select(selectHeroStore)
       .pipe(untilDestroyed(this))
       .subscribe(({ heroes }) => {
         this.totalHeroes = heroes.length;
       });
 
     this.store
-      .select(selectVillainsState)
+      .select(selectVillainStore)
       .pipe(untilDestroyed(this))
       .subscribe(({ villains }) => {
         this.totalVillains = villains.length;
