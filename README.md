@@ -1,5 +1,7 @@
 # NgRx Course
 
+![screenshot](./screenshot.png)
+
 ## Test
 
 - npm i -D jest @types/jest jest-preset-angular
