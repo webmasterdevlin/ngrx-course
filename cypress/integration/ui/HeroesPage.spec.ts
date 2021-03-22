@@ -29,5 +29,26 @@ describe("Heroes Page", () => {
 
   it("should render heroes", () => {
     cy.get("[data-testid=card]").should("have.length", HEROES.length);
+    cy.get("[data-testid=total-heroes]").should("contain", HEROES.length);
   });
+
+  describe("Navigate to a hero's detail", () => {});
+  describe("Soft delete a hero", () => {
+    it("should soft delete a hero after clicking a soft delete button", () => {
+      cy.get("[data-testid=soft-delete-button]").eq(1).click();
+      cy.get("[data-testid=soft-delete-button]").should(
+        "have.length",
+        HEROES.length - 1
+      );
+      cy.get("[data-testid=hero-chip]").should(
+        "have.length",
+        HEROES.length - 1
+      );
+      cy.get("[data-testid=total-heroes]").should("contain", HEROES.length - 1);
+    });
+  });
+  describe("Delete a hero", () => {});
+  describe("Add a new hero", () => {});
+  describe("Update a new hero", () => {});
+  describe("Update an existing hero", () => {});
 });

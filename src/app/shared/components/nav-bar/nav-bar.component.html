@@ -8,7 +8,7 @@
   "
 >
   <div>
-    <button mat-button routerLink="/">Home</button>
+    <button data-testid="home" mat-button routerLink="/">Home</button>
     <button mat-button [matMenuTriggerFor]="characters">
       <mat-icon data-testid="more">more_vert</mat-icon>
     </button>
@@ -18,11 +18,11 @@
       <button data-testid="nav-villains"  mat-menu-item routerLink="/villains">Villains</button>
     </mat-menu>
 
-    <span style="margin-right: 1rem">Total heroes: {{ totalHeroes }}</span>
-    <span>Total villains: {{ totalVillains }}</span>
+    <span data-testid="total-heroes" style="margin-right: 1rem">Total heroes: {{ totalHeroes }}</span>
+    <span data-testid="total-villains">Total villains: {{ totalVillains }}</span>
   </div>
 
-  <button mat-mini-fab color="default" (click)="handleLoadCharacters()">
+  <button data-testid="refetch-button" mat-mini-fab color="default" (click)="handleLoadCharacters()">
     <mat-icon>cached</mat-icon>
   </button>
 </mat-toolbar>

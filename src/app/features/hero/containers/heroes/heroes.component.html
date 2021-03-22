@@ -33,11 +33,12 @@
           <mat-card-subtitle>{{ hero.house }}</mat-card-subtitle>
         </mat-card-header>
       </div>
-      <mat-card-content  *ngIf="isLoading && (editingTracker === hero.id)">
+      <mat-card-content *ngIf="isLoading && (editingTracker === hero.id)">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       </mat-card-content>
       <mat-card-actions>
         <button
+          data-testid="cancel-button"
           mat-button
           color="primary"
           *ngIf="editingTracker === hero.id"
@@ -47,6 +48,7 @@
         </button>
 
         <button
+          data-testid="edit-button"
           mat-raised-button
           color="primary"
           *ngIf="editingTracker !== hero.id"
@@ -55,16 +57,17 @@
           EDIT
         </button>
         <button
+          data-testid="detail-button"
           mat-raised-button
           color="info"
           (click)="handleNavigateHeroDetail(hero.id)"
         >
           DETAIL
         </button>
-        <button mat-raised-button color="accent" (click)="handleSoftDeleteHero(hero.id)">
+        <button data-testid="soft-delete-button" mat-raised-button color="accent" (click)="handleSoftDeleteHero(hero.id)">
           SOFT DELETE
         </button>
-        <button mat-raised-button color="warn" (click)="handleDeleteHero(hero.id)">
+        <button data-testid="delete-button" mat-raised-button color="warn" (click)="handleDeleteHero(hero.id)">
           DELETE
         </button>
       </mat-card-actions>
