@@ -152,4 +152,32 @@ describe("Villains Page", () => {
       cy.get("[data-testid=card-title]").eq(index).contains("edited");
     });
   });
+
+  describe("Refetch", () => {
+    it("should refetch all villains after soft deleting all villains", () => {
+      cy.get("[data-testid=soft-delete-button]").each(($el) =>
+        cy.wrap($el).click()
+      );
+      cy.get("[data-testid=card]").should("not.exist");
+      cy.get("[data-testid=refetch-button]").click();
+      cy.get("[data-testid=card]").should("have.length", VILLAINS.length);
+      cy.get("[data-testid=villain-chip]").should(
+        "have.length",
+        VILLAINS.length
+      );
+      cy.get("[data-testid=total-villains]").contains(VILLAINS.length);
+    });
+
+    it("should refetch all villains after deleting all villains", () => {
+      cy.get("[data-testid=delete-button]").each(($el) => cy.wrap($el).click());
+      cy.get("[data-testid=card]").should("not.exist");
+      cy.get("[data-testid=refetch-button]").click();
+      cy.get("[data-testid=card]").should("have.length", VILLAINS.length);
+      cy.get("[data-testid=villain-chip]").should(
+        "have.length",
+        VILLAINS.length
+      );
+      cy.get("[data-testid=total-villains]").contains(VILLAINS.length);
+    });
+  });
 });

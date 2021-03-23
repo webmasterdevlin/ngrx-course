@@ -143,4 +143,26 @@ describe("Heroes Page", () => {
       cy.get("[data-testid=card-title]").eq(index).contains("edited");
     });
   });
+
+  describe("Refetch", () => {
+    it("should refetch all heroes after soft deleting all heroes", () => {
+      cy.get("[data-testid=soft-delete-button]").each(($el) =>
+        cy.wrap($el).click()
+      );
+      cy.get("[data-testid=card]").should("not.exist");
+      cy.get("[data-testid=refetch-button]").click();
+      cy.get("[data-testid=card]").should("have.length", HEROES.length);
+      cy.get("[data-testid=hero-chip]").should("have.length", HEROES.length);
+      cy.get("[data-testid=total-heroes]").contains(HEROES.length);
+    });
+
+    it("should refetch all heroes after deleting all heroes", () => {
+      cy.get("[data-testid=delete-button]").each(($el) => cy.wrap($el).click());
+      cy.get("[data-testid=card]").should("not.exist");
+      cy.get("[data-testid=refetch-button]").click();
+      cy.get("[data-testid=card]").should("have.length", HEROES.length);
+      cy.get("[data-testid=hero-chip]").should("have.length", HEROES.length);
+      cy.get("[data-testid=total-heroes]").contains(HEROES.length);
+    });
+  });
 });
