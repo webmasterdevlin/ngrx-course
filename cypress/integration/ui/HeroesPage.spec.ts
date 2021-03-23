@@ -32,23 +32,115 @@ describe("Heroes Page", () => {
     cy.get("[data-testid=total-heroes]").should("contain", HEROES.length);
   });
 
-  describe("Navigate to a hero's detail", () => {});
+  describe("Hero's detail", () => {
+    it("should navigate to hero's detail after clicking a detail button", () => {
+      cy.get("[data-testid=detail-button]").eq(1).click();
+      cy.location("pathname").should("contain", "/hero-detail/");
+    });
+  });
+
   describe("Soft delete a hero", () => {
-    it("should soft delete a hero after clicking a soft delete button", () => {
-      cy.get("[data-testid=soft-delete-button]").eq(1).click();
-      cy.get("[data-testid=soft-delete-button]").should(
-        "have.length",
-        HEROES.length - 1
-      );
+    it("should remove temporarily a card after clicking a soft-delete button", () => {
+      const index = 1;
+      cy.get("[data-testid=soft-delete-button]").eq(index).click();
+      cy.get("[data-testid=card]").should("have.length", HEROES.length - 1);
+    });
+
+    it("should remove temporarily a chip after clicking a soft-delete button", () => {
+      const index = 1;
+      cy.get("[data-testid=soft-delete-button]").eq(index).click();
       cy.get("[data-testid=hero-chip]").should(
         "have.length",
         HEROES.length - 1
       );
+    });
+
+    it("should deduct 1 temporarily from the total heroes after clicking a soft-delete button", () => {
+      const index = 1;
+      cy.get("[data-testid=soft-delete-button]").eq(index).click();
       cy.get("[data-testid=total-heroes]").should("contain", HEROES.length - 1);
     });
   });
-  describe("Delete a hero", () => {});
-  describe("Add a new hero", () => {});
-  describe("Update a new hero", () => {});
-  describe("Update an existing hero", () => {});
+
+  describe("Delete a hero", () => {
+    it("should remove a card after clicking a delete button", () => {
+      const index = 1;
+      cy.get("[data-testid=delete-button]").eq(index).click();
+      cy.get("[data-testid=card]").should("have.length", HEROES.length - 1);
+    });
+
+    it("should remove a chip after clicking a delete button", () => {
+      const index = 1;
+      cy.get("[data-testid=delete-button]").eq(index).click();
+      cy.get("[data-testid=hero-chip]").should(
+        "have.length",
+        HEROES.length - 1
+      );
+    });
+
+    it("should deduct 1 from the total heroes after clicking a delete button", () => {
+      const index = 1;
+      cy.get("[data-testid=delete-button]").eq(index).click();
+      cy.get("[data-testid=total-heroes]").should("contain", HEROES.length - 1);
+    });
+  });
+
+  describe("Add a new hero", () => {
+    it("should create a new hero after filling out the form", () => {
+      const firstName = "Bucky";
+      const lastName = "Barnes";
+      const house = "Marvel";
+      const knownAs = "The Winter Soldier";
+
+      cy.get("@FirstName").type(firstName);
+      cy.get("@LastName").type(lastName);
+      cy.get("@House").type(house);
+      cy.get("@KnownAs").type(knownAs);
+
+      cy.postCommand("/heroes", {
+        firstName,
+        lastName,
+        house,
+        knownAs,
+      });
+
+      cy.get("@SaveUpdate").click();
+
+      cy.get("[data-testid=card]").should("have.length", HEROES.length + 1);
+      cy.get("[data-testid=hero-chip]").should(
+        "have.length",
+        HEROES.length + 1
+      );
+      cy.get("[data-testid=total-heroes]").contains(HEROES.length + 1);
+    });
+  });
+
+  describe("Update an existing hero", () => {
+    it("should go back to rows of heroes and not update hero whe cancel is clicked", () => {
+      const index = 0;
+      const editedFirstName = " - edited";
+
+      cy.get("[data-testid=edit-button]").eq(index).click();
+      cy.get("@FirstName").type(editedFirstName);
+
+      cy.get("[data-testid=cancel-button]").click();
+      cy.get("[data-testid=card-title]")
+        .eq(index)
+        .should("not.have.value", "edited");
+    });
+
+    it("should update an existing hero", () => {
+      const index = 0;
+      const hero = HEROES[index];
+      const editedFirstName = " - edited";
+
+      cy.get("[data-testid=edit-button]").eq(index).click();
+      cy.get("@FirstName").type(editedFirstName);
+      cy.putCommand(`/heroes`, { ...hero, firstName: editedFirstName });
+
+      cy.get("@SaveUpdate").click();
+      cy.get("[data-testid=cancel-button]").click();
+      cy.get("[data-testid=card-title]").eq(index).contains("edited");
+    });
+  });
 });
