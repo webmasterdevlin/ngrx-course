@@ -20,6 +20,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: "anti-heroes",
+    loadChildren: () =>
+      import("./features/anti-hero/anti-heroes.module").then(
+        (m) => m.AntiHeroesModule
+      ),
+  },
+  {
     path: "auth",
     loadChildren: () =>
       import("./features/auth/auth.module").then((m) => m.AuthModule),

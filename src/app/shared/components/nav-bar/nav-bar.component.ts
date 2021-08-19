@@ -5,6 +5,8 @@ import { loadHeroes } from "src/app/store/actions/hero.actions";
 import { selectHeroStore } from "src/app/store/selectors/hero.selectors";
 import { loadVillains } from "src/app/store/actions/villain.actions";
 import { selectVillainStore } from "src/app/store/selectors/villain.selectors";
+import { loadAntiHeroes } from "src/app/store/actions/anti-hero.actions";
+import { selectAntiHeroStore } from "src/app/store/selectors/anti-hero.selectors";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
 @UntilDestroy()
@@ -16,6 +18,7 @@ import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 export class NavBarComponent implements OnInit {
   totalHeroes = 0;
   totalVillains = 0;
+  totalAntiHeroes = 0;
 
   constructor(private store: Store<State>) {}
 
@@ -26,6 +29,7 @@ export class NavBarComponent implements OnInit {
   handleLoadCharacters() {
     this.store.dispatch(loadHeroes());
     this.store.dispatch(loadVillains());
+    this.store.dispatch(loadAntiHeroes());
   }
 
   private getStore() {
@@ -41,6 +45,13 @@ export class NavBarComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe(({ villains }) => {
         this.totalVillains = villains.length;
+      });
+
+    this.store
+      .select(selectAntiHeroStore)
+      .pipe(untilDestroyed(this))
+      .subscribe(({ antiHeroes }) => {
+        this.totalAntiHeroes = antiHeroes.length;
       });
   }
 }

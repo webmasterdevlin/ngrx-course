@@ -1,17 +1,28 @@
 <section class="character-list-wrapper">
-    <div *ngIf="heroes" class="chips-wrapper" style="margin-right: 2rem;">
-        <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
-          <mat-chip data-testid="hero-chip" *ngFor="let hero of heroes">
-            {{hero.firstName}} {{hero.lastName}} of {{hero.house}}
-          </mat-chip>
-        </mat-chip-list>
-    </div>
+  <div *ngIf="heroes" class="chips-wrapper" style="margin-right: 2rem">
+    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+      <mat-chip data-testid="hero-chip" *ngFor="let hero of heroes">
+        {{ hero.firstName }} {{ hero.lastName }} of {{ hero.house }}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
 
-    <div *ngIf="villains" class="chips-wrapper">
-        <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
-          <mat-chip data-testid="villain-chip" *ngFor="let villain of villains">
-            {{villain.firstName}} {{villain.lastName}} of {{villain.house}}
-          </mat-chip>
-        </mat-chip-list>
-    </div>
+  <div *ngIf="villains" class="chips-wrapper">
+    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+      <mat-chip data-testid="villain-chip" *ngFor="let villain of villains">
+        {{ villain.firstName }} {{ villain.lastName }} of {{ villain.house }}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <div *ngIf="antiHeroes" class="chips-wrapper" style="margin-right: 2rem">
+    <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+      <mat-chip
+        data-testid="anti-hero-chip"
+        *ngFor="let antiHero of antiHeroes"
+      >
+        {{ antiHero.firstName }} {{ antiHero.lastName }} of {{ antiHero.house }}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
 </section>

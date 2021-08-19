@@ -1,0 +1,88 @@
+<div *ngIf="editingTracker === '0'">
+  <app-form
+    [itemForm]="itemForm"
+    [text]="'SAVE'"
+    (handleSubmit)="handleCreateAntiHero()"
+  ></app-form>
+</div>
+<app-character-list></app-character-list>
+<mat-card-content *ngIf="isLoading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</mat-card-content>
+<section>
+  <div
+    style="width: 100%; margin: 5rem 0; min-width: 16rem"
+    *ngFor="let antiHero of antiHeroes"
+  >
+    <mat-card data-testid="card" style="width: auto">
+      <div *ngIf="editingTracker === antiHero.id">
+        <mat-card-content>
+          <app-form
+            [itemForm]="editedForm"
+            [text]="isLoading ? 'SENDING' : 'UPDATE'"
+            (handleSubmit)="handleUpdateAntiHero()"
+          ></app-form>
+        </mat-card-content>
+      </div>
+      <div *ngIf="editingTracker !== antiHero.id">
+        <mat-card-header>
+          <mat-card-title data-testid="card-title"
+            >{{ antiHero.firstName }} {{ antiHero.lastName }} is
+            {{ antiHero.knownAs }}</mat-card-title
+          >
+          <mat-card-subtitle>{{ antiHero.house }}</mat-card-subtitle>
+        </mat-card-header>
+      </div>
+      <mat-card-content *ngIf="isLoading && editingTracker === antiHero.id">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          data-testid="cancel-button"
+          mat-button
+          color="primary"
+          *ngIf="editingTracker === antiHero.id"
+          (click)="editingTracker = '0'"
+        >
+          CANCEL
+        </button>
+
+        <button
+          data-testid="edit-button"
+          mat-raised-button
+          color="primary"
+          *ngIf="editingTracker !== antiHero.id"
+          (click)="
+            editingTracker = antiHero.id; editedForm.patchValue(antiHero)
+          "
+        >
+          EDIT
+        </button>
+        <button
+          data-testid="detail-button"
+          mat-raised-button
+          color="info"
+          (click)="handleNavigateAntiHeroDetail(antiHero.id)"
+        >
+          DETAIL
+        </button>
+        <button
+          data-testid="soft-delete-button"
+          mat-raised-button
+          color="accent"
+          (click)="handleSoftDeleteAntiHero(antiHero.id)"
+        >
+          SOFT DELETE
+        </button>
+        <button
+          data-testid="delete-button"
+          mat-raised-button
+          color="warn"
+          (click)="handleDeleteAntiHero(antiHero.id)"
+        >
+          DELETE
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>

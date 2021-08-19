@@ -20,13 +20,23 @@
       <button data-testid="nav-villains" mat-menu-item routerLink="/villains">
         Villains
       </button>
+      <button
+        data-testid="nav-anti-heroes"
+        mat-menu-item
+        routerLink="/anti-heroes"
+      >
+        Anti Heroes
+      </button>
     </mat-menu>
 
     <span data-testid="total-heroes" style="margin-right: 1rem"
       >Total heroes: {{ totalHeroes }}</span
     >
-    <span data-testid="total-villains"
+    <span data-testid="total-villains" style="margin-right: 1rem"
       >Total villains: {{ totalVillains }}</span
+    >
+    <span data-testid="total-heroes"
+      >Total anti-heroes: {{ totalAntiHeroes }}</span
     >
   </div>
 
