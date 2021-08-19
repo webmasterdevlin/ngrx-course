@@ -6,7 +6,7 @@ import { Villain } from "src/app/features/villain/villain.model";
 
 @Injectable()
 export class VillainService {
-  path = environment.apiUrlBase + "villains";
+  path = environment.apiUrlBase + "api/v1/villains";
 
   constructor(private http: HttpClient) {}
 

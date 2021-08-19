@@ -1,10 +1,11 @@
 import { NgModule, Optional, SkipSelf } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
+import { AuthInterceptor } from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [],
   imports: [HttpClientModule],
-  providers: []
+  providers: [AuthInterceptor],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

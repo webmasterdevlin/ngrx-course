@@ -3,15 +3,19 @@ import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AntiHero } from "src/app/features/anti-hero/anti-hero.model";
+import { AuthBearerAndContentTypeJsonHeaders } from "../../shared/helpers/httpHeaders";
 
 @Injectable()
 export class AntiHeroService {
-  path = environment.apiUrlBase + "anti-heroes";
+  path = environment.apiUrlBase + "api/v1/anti-heroes";
 
   constructor(private http: HttpClient) {}
 
   getAntiHeroes(): Observable<AntiHero[]> {
-    return this.http.get<AntiHero[]>(this.path);
+    return this.http.get<AntiHero[]>(
+      this.path,
+      AuthBearerAndContentTypeJsonHeaders.options
+    );
   }
 
   deleteAntiHero(id: string): Observable<void> {

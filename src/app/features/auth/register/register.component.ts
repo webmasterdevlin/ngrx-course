@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
+import { UserService } from "../user.service";
+import { Login, User } from "../user.model";
+import { catchError, map } from "rxjs/operators";
+import { store } from "../../../shared/helpers/jwtCache";
 
 @Component({
   selector: "app-register",
@@ -7,23 +12,43 @@ import { FormControl, FormGroup } from "@angular/forms";
   styleUrls: ["./register.component.css"],
 })
 export class RegisterComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    email: new FormControl(""),
-    mobileNumber: new FormControl(""),
-    password: new FormControl(""),
-  });
+  invalidRegister: boolean;
+  registerForm: FormGroup;
 
-  submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
-    }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.formBuilderInit();
   }
 
-  @Input() error: string | null;
+  formBuilderInit(): void {
+    this.registerForm = this.fb.group({
+      email: [""],
+      mobileNumber: [""],
+      password: [""],
+    });
+  }
 
-  @Output() submitEM = new EventEmitter();
+  onSubmit(): void {
+    // You can validate all your fields here before sending loginForm
+    this.sendLoginForm();
+  }
 
-  ngOnInit(): void {}
+  private sendLoginForm(): void {
+    const userModel = <User>this.registerForm.value;
 
-  open() {}
+    this.userService.register(userModel).pipe(
+      map(async (response) => {
+        console.log(response);
+      }),
+      catchError((err) => {
+        console.log(err);
+        return err;
+      })
+    );
+  }
 }
