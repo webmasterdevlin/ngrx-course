@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap } from "rxjs/operators";
 import { of } from "rxjs";
 import * as antiHeroActions from "../actions/anti-hero.actions";
-import { AntiHeroService } from "../services/anti-hero.service";
+import { AntiHeroService } from "../services";
 
 @Injectable()
 export class AntiHeroEffects {

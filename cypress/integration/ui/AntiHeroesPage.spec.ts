@@ -23,7 +23,10 @@ describe("AntiHeroes Page", () => {
      * and the global.d.ts for intellisense */
     cy.getCommand("/api/v1/anti-heroes", ANTI_HEROES);
     cy.deleteCommand("/api/v1/anti-heroes/*");
+
     cy.visit("/");
+    cy.get("[data-testid=more]").click();
+    cy.get("[data-testid=nav-anti-heroes]").click();
     cy.SetupInputFieldsCommand();
   });
 
@@ -36,13 +39,13 @@ describe("AntiHeroes Page", () => {
   });
 
   describe("AntiHero's detail", () => {
-    it("should navigate to hero's detail after clicking a detail button", () => {
+    it("should navigate to anti hero's detail after clicking a detail button", () => {
       cy.get("[data-testid=detail-button]").eq(1).click();
-      cy.location("pathname").should("contain", "/hero-detail/");
+      cy.location("pathname").should("contain", "/anti-hero-detail/");
     });
   });
 
-  describe("Soft delete a hero", () => {
+  describe("Soft delete an anti hero", () => {
     it("should remove temporarily a card after clicking a soft-delete button", () => {
       const index = 1;
       cy.get("[data-testid=soft-delete-button]").eq(index).click();
@@ -55,7 +58,7 @@ describe("AntiHeroes Page", () => {
     it("should remove temporarily a chip after clicking a soft-delete button", () => {
       const index = 1;
       cy.get("[data-testid=soft-delete-button]").eq(index).click();
-      cy.get("[data-testid=hero-chip]").should(
+      cy.get("[data-testid=anti-hero-chip]").should(
         "have.length",
         ANTI_HEROES.length - 1
       );
@@ -71,7 +74,7 @@ describe("AntiHeroes Page", () => {
     });
   });
 
-  describe("Delete a hero", () => {
+  describe("Delete an anti hero", () => {
     it("should remove a card after clicking a delete button", () => {
       const index = 1;
       cy.get("[data-testid=delete-button]").eq(index).click();
@@ -84,7 +87,7 @@ describe("AntiHeroes Page", () => {
     it("should remove a chip after clicking a delete button", () => {
       const index = 1;
       cy.get("[data-testid=delete-button]").eq(index).click();
-      cy.get("[data-testid=hero-chip]").should(
+      cy.get("[data-testid=anti-hero-chip]").should(
         "have.length",
         ANTI_HEROES.length - 1
       );
@@ -100,8 +103,8 @@ describe("AntiHeroes Page", () => {
     });
   });
 
-  describe("Add a new hero", () => {
-    it("should create a new hero after filling out the form", () => {
+  describe("Add a new anti hero", () => {
+    it("should create a new anti hero after filling out the form", () => {
       const firstName = "Bucky";
       const lastName = "Barnes";
       const house = "Marvel";
@@ -125,7 +128,7 @@ describe("AntiHeroes Page", () => {
         "have.length",
         ANTI_HEROES.length + 1
       );
-      cy.get("[data-testid=hero-chip]").should(
+      cy.get("[data-testid=anti-hero-chip]").should(
         "have.length",
         ANTI_HEROES.length + 1
       );
@@ -143,7 +146,7 @@ describe("AntiHeroes Page", () => {
       cy.get("[data-testid=card]").should("not.exist");
       cy.get("[data-testid=refetch-button]").click();
       cy.get("[data-testid=card]").should("have.length", ANTI_HEROES.length);
-      cy.get("[data-testid=hero-chip]").should(
+      cy.get("[data-testid=anti-hero-chip]").should(
         "have.length",
         ANTI_HEROES.length
       );
@@ -155,7 +158,7 @@ describe("AntiHeroes Page", () => {
       cy.get("[data-testid=card]").should("not.exist");
       cy.get("[data-testid=refetch-button]").click();
       cy.get("[data-testid=card]").should("have.length", ANTI_HEROES.length);
-      cy.get("[data-testid=hero-chip]").should(
+      cy.get("[data-testid=anti-hero-chip]").should(
         "have.length",
         ANTI_HEROES.length
       );
