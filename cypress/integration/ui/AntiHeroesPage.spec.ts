@@ -1,15 +1,15 @@
 /// <reference types="cypress"/>
 
-const VILLAINS = [
+const ANTI_HEROES = [
   {
-    id: "cytkf7rfu6yf",
+    id: "6o7edyikuyg",
     firstName: "Barry",
     lastName: "Allen",
     house: "DC",
     knownAs: "Flash",
   },
   {
-    id: "ftdcktcvcx",
+    id: "97rfikuiyhoi",
     firstName: "Scott",
     lastName: "Summer",
     house: "Marvel",
@@ -17,85 +17,91 @@ const VILLAINS = [
   },
 ];
 
-describe("Villains Page", () => {
+describe("AntiHeroes Page", () => {
   beforeEach(() => {
     /* Custom commands. Please see support/commands.ts
      * and the global.d.ts for intellisense */
-    cy.getCommand("/api/v1/villains", VILLAINS);
-    cy.deleteCommand("/api/v1/villains/*");
-
+    cy.getCommand("/api/v1/anti-heroes", ANTI_HEROES);
+    cy.deleteCommand("/api/v1/anti-heroes/*");
     cy.visit("/");
-    cy.get("[data-testid=more]").click();
-    cy.get("[data-testid=nav-villains]").click();
     cy.SetupInputFieldsCommand();
   });
 
-  it("should render villains", () => {
-    cy.location("pathname").should("equal", "/villains");
-    cy.get("[data-testid=card]").should("have.length", VILLAINS.length);
+  it("should render anti heroes", () => {
+    cy.get("[data-testid=card]").should("have.length", ANTI_HEROES.length);
+    cy.get("[data-testid=total-anti-heroes]").should(
+      "contain",
+      ANTI_HEROES.length
+    );
   });
 
-  describe("Villain's detail", () => {
-    it("should navigate to villain's detail after clicking a detail button", () => {
+  describe("AntiHero's detail", () => {
+    it("should navigate to hero's detail after clicking a detail button", () => {
       cy.get("[data-testid=detail-button]").eq(1).click();
-      cy.location("pathname").should("contain", "/villain-detail/");
+      cy.location("pathname").should("contain", "/hero-detail/");
     });
   });
 
-  describe("Soft delete a villain", () => {
+  describe("Soft delete a hero", () => {
     it("should remove temporarily a card after clicking a soft-delete button", () => {
       const index = 1;
       cy.get("[data-testid=soft-delete-button]").eq(index).click();
-      cy.get("[data-testid=card]").should("have.length", VILLAINS.length - 1);
+      cy.get("[data-testid=card]").should(
+        "have.length",
+        ANTI_HEROES.length - 1
+      );
     });
 
     it("should remove temporarily a chip after clicking a soft-delete button", () => {
       const index = 1;
       cy.get("[data-testid=soft-delete-button]").eq(index).click();
-      cy.get("[data-testid=villain-chip]").should(
+      cy.get("[data-testid=hero-chip]").should(
         "have.length",
-        VILLAINS.length - 1
+        ANTI_HEROES.length - 1
       );
     });
 
-    it("should deduct 1 temporarily from the total villains after clicking a soft-delete button", () => {
+    it("should deduct 1 temporarily from the total anti heroes after clicking a soft-delete button", () => {
       const index = 1;
       cy.get("[data-testid=soft-delete-button]").eq(index).click();
-      cy.get("[data-testid=total-villains]").should(
+      cy.get("[data-testid=total-anti-heroes]").should(
         "contain",
-        VILLAINS.length - 1
+        ANTI_HEROES.length - 1
       );
     });
   });
 
-  describe("Delete a villain", () => {
+  describe("Delete a hero", () => {
     it("should remove a card after clicking a delete button", () => {
       const index = 1;
       cy.get("[data-testid=delete-button]").eq(index).click();
-      cy.get("[data-testid=card]").should("have.length", VILLAINS.length - 1);
+      cy.get("[data-testid=card]").should(
+        "have.length",
+        ANTI_HEROES.length - 1
+      );
     });
 
     it("should remove a chip after clicking a delete button", () => {
       const index = 1;
       cy.get("[data-testid=delete-button]").eq(index).click();
-      cy.get("[data-testid=villain-chip]").should(
+      cy.get("[data-testid=hero-chip]").should(
         "have.length",
-        VILLAINS.length - 1
+        ANTI_HEROES.length - 1
       );
     });
 
-    it("should deduct 1 from the total villains after clicking a delete button", () => {
+    it("should deduct 1 from the total anti heroes after clicking a delete button", () => {
       const index = 1;
       cy.get("[data-testid=delete-button]").eq(index).click();
-      cy.get("[data-testid=total-villains]").should(
+      cy.get("[data-testid=total-anti-heroes]").should(
         "contain",
-        VILLAINS.length - 1
+        ANTI_HEROES.length - 1
       );
     });
   });
 
-  describe("Add a new villain", () => {
-    it("should create a new villain after filling out the form", () => {
+  describe("Add a new hero", () => {
+    it("should create a new hero after filling out the form", () => {
       const firstName = "Bucky";
       const lastName = "Barnes";
       const house = "Marvel";
@@ -106,7 +112,7 @@ describe("Villains Page", () => {
       cy.get("@House").type(house);
       cy.get("@KnownAs").type(knownAs);
 
-      cy.postCommand("/api/v1/villains", {
+      cy.postCommand("/api/v1/anti-heroes", {
         firstName,
         lastName,
         house,
@@ -115,40 +121,45 @@ describe("Villains Page", () => {
 
       cy.get("@SaveUpdate").click();
 
-      cy.get("[data-testid=card]").should("have.length", VILLAINS.length + 1);
-      cy.get("[data-testid=villain-chip]").should(
+      cy.get("[data-testid=card]").should(
         "have.length",
-        VILLAINS.length + 1
+        ANTI_HEROES.length + 1
       );
-      cy.get("[data-testid=total-villains]").contains(VILLAINS.length + 1);
+      cy.get("[data-testid=hero-chip]").should(
+        "have.length",
+        ANTI_HEROES.length + 1
+      );
+      cy.get("[data-testid=total-anti-heroes]").contains(
+        ANTI_HEROES.length + 1
+      );
     });
   });
 
   describe("Refetch", () => {
-    it("should refetch all villains after soft deleting all villains", () => {
+    it("should refetch all anti heroes after soft deleting all anti heroes", () => {
       cy.get("[data-testid=soft-delete-button]").each(($el) =>
         cy.wrap($el).click()
       );
       cy.get("[data-testid=card]").should("not.exist");
       cy.get("[data-testid=refetch-button]").click();
-      cy.get("[data-testid=card]").should("have.length", VILLAINS.length);
-      cy.get("[data-testid=villain-chip]").should(
+      cy.get("[data-testid=card]").should("have.length", ANTI_HEROES.length);
+      cy.get("[data-testid=hero-chip]").should(
         "have.length",
-        VILLAINS.length
+        ANTI_HEROES.length
       );
-      cy.get("[data-testid=total-villains]").contains(VILLAINS.length);
+      cy.get("[data-testid=total-anti-heroes]").contains(ANTI_HEROES.length);
     });
 
-    it("should refetch all villains after deleting all villains", () => {
+    it("should refetch all anti-heroes after deleting all anti-heroes", () => {
       cy.get("[data-testid=delete-button]").each(($el) => cy.wrap($el).click());
       cy.get("[data-testid=card]").should("not.exist");
       cy.get("[data-testid=refetch-button]").click();
-      cy.get("[data-testid=card]").should("have.length", VILLAINS.length);
-      cy.get("[data-testid=villain-chip]").should(
+      cy.get("[data-testid=card]").should("have.length", ANTI_HEROES.length);
+      cy.get("[data-testid=hero-chip]").should(
         "have.length",
-        VILLAINS.length
+        ANTI_HEROES.length
       );
-      cy.get("[data-testid=total-villains]").contains(VILLAINS.length);
+      cy.get("[data-testid=total-anti-heroes]").contains(ANTI_HEROES.length);
     });
   });
 });

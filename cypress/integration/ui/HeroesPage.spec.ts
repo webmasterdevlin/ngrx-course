@@ -21,8 +21,8 @@ describe("Heroes Page", () => {
   beforeEach(() => {
     /* Custom commands. Please see support/commands.ts
      * and the global.d.ts for intellisense */
-    cy.getCommand("/heroes", HEROES);
-    cy.deleteCommand("/heroes/*");
+    cy.getCommand("/api/v1/heroes", HEROES);
+    cy.deleteCommand("/api/v1/heroes/*");
     cy.visit("/");
     cy.SetupInputFieldsCommand();
   });
@@ -97,7 +97,7 @@ describe("Heroes Page", () => {
       cy.get("@House").type(house);
       cy.get("@KnownAs").type(knownAs);
 
-      cy.postCommand("/heroes", {
+      cy.postCommand("/api/v1/heroes", {
         firstName,
         lastName,
         house,
