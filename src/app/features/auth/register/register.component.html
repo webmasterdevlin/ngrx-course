@@ -1,18 +1,27 @@
 <mat-card>
-  <mat-card-title>Authentication</mat-card-title>
+  <mat-card-title>Register</mat-card-title>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="submit()">
       <p>
         <mat-form-field>
           <input
-            type="text"
+            type="email"
             matInput
-            placeholder="Username"
-            formControlName="username"
+            placeholder="Email"
+            formControlName="email"
           />
         </mat-form-field>
       </p>
-
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Mobile Number"
+            formControlName="mobileNumber"
+          />
+        </mat-form-field>
+      </p>
       <p>
         <mat-form-field>
           <input
@@ -29,8 +38,11 @@
       </p>
 
       <div class="button">
-        <button type="submit" mat-button>Login</button>
+        <button type="submit" mat-button>Register</button>
       </div>
+      <p class="text-center">
+        Already a member? <a routerLink="/auth/login">Login</a> here.
+      </p>
     </form>
   </mat-card-content>
 </mat-card>

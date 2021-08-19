@@ -1,14 +1,15 @@
-import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
-  selector: "app-auth",
-  templateUrl: "./auth.component.html",
-  styleUrls: ["./auth.component.css"],
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.css"],
 })
-export class AuthComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    username: new FormControl(""),
+    email: new FormControl(""),
+    mobileNumber: new FormControl(""),
     password: new FormControl(""),
   });
 
@@ -17,6 +18,7 @@ export class AuthComponent implements OnInit {
       this.submitEM.emit(this.form.value);
     }
   }
+
   @Input() error: string | null;
 
   @Output() submitEM = new EventEmitter();
