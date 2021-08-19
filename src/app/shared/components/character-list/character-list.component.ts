@@ -25,6 +25,7 @@ export class CharacterListComponent implements OnInit {
   ngOnInit(): void {
     this.fetchHeroes();
     this.fetchVillains();
+    this.fetchAntiHeroes();
   }
 
   fetchHeroes() {
