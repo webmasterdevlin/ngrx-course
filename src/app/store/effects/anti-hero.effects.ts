@@ -23,9 +23,10 @@ export class AntiHeroEffects {
               antiHeroes,
             })
           ),
-          catchError((error) =>
-            of(antiHeroActions.loadAntiHeroesFail({ error }))
-          )
+          catchError((error) => {
+            console.log(error);
+            return of(antiHeroActions.loadAntiHeroesFail({ error }));
+          })
         )
       )
     )

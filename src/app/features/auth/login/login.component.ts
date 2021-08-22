@@ -3,9 +3,11 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Login } from "../user.model";
 import { Router } from "@angular/router";
 import { UserService } from "../user.service";
-import { catchError, map, tap } from "rxjs/operators";
-import { store } from "../../../shared/helpers/jwtCache";
+import { catchError, map } from "rxjs/operators";
+import { storeJwt } from "src/app/shared/helpers/jwtCache";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
+@UntilDestroy()
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -27,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   formBuilderInit(): void {
     this.loginForm = this.fb.group({
-      email: ["johndoe@gmail.com"],
-      password: ["Pass123!"],
+      email: [""],
+      password: [""],
     });
   }
 
@@ -38,23 +40,17 @@ export class LoginComponent implements OnInit {
   }
 
   private sendLoginForm(): void {
-    const loginModel = <Login>this.loginForm.value;
+    const login = <Login>this.loginForm.value;
 
     this.userService
-      .login(loginModel)
+      .login(login)
       .pipe(
-        map((response) => {
-          console.log("MAP");
+        untilDestroyed(this),
+        map(async (response) => {
           const token = (<any>response).token;
-
-          console.log("new token: ", JSON.stringify(token));
-
-          localStorage.setItem("jwt", token);
-          store(token);
-          console.log("token has been stored locally");
-
+          storeJwt(token);
           this.invalidLogin = false;
-          this.router.navigate(["/anti-heroes"]);
+          await this.router.navigate(["/anti-heroes"]);
         }),
         catchError((err) => {
           console.log(err);

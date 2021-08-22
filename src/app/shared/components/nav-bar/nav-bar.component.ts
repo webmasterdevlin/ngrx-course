@@ -8,6 +8,9 @@ import { selectVillainStore } from "src/app/store/selectors/villain.selectors";
 import { loadAntiHeroes } from "src/app/store/actions/anti-hero.actions";
 import { selectAntiHeroStore } from "src/app/store/selectors/anti-hero.selectors";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { getJwt, removeJwt } from "../../helpers/jwtCache";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { Router } from "@angular/router";
 
 @UntilDestroy()
 @Component({
@@ -20,16 +23,29 @@ export class NavBarComponent implements OnInit {
   totalVillains = 0;
   totalAntiHeroes = 0;
 
-  constructor(private store: Store<State>) {}
+  isLogged = false;
+
+  constructor(private store: Store<State>, private router: Router) {}
 
   ngOnInit(): void {
     this.getStore();
+
+    const token = getJwt();
+    const jwtHelper = new JwtHelperService();
+    if (token && !jwtHelper.isTokenExpired(token)) {
+      this.isLogged = true;
+    }
   }
 
   handleLoadCharacters() {
     this.store.dispatch(loadHeroes());
     this.store.dispatch(loadVillains());
     this.store.dispatch(loadAntiHeroes());
+  }
+
+  async logout() {
+    removeJwt();
+    await this.router.navigateByUrl("/auth/login");
   }
 
   private getStore() {

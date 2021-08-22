@@ -7,7 +7,7 @@ import {
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injectable, NgModule } from "@angular/core";
 import { Observable } from "rxjs";
-import { get } from "../../shared/helpers/jwtCache";
+import { getJwt } from "../../shared/helpers/jwtCache";
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -16,7 +16,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = get();
+    const token = getJwt();
 
     if (token) {
       const newReq = req.clone({

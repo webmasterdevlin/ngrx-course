@@ -48,4 +48,7 @@
   >
     <mat-icon>cached</mat-icon>
   </button>
+  <button *ngIf="isLogged" mat-mini-fab color="default" (click)="logout()">
+    <mat-icon color="warn">exit_to_app</mat-icon>
+  </button>
 </mat-toolbar>

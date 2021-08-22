@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "../user.service";
-import { Login, User } from "../user.model";
+import { User } from "../user.model";
 import { catchError, map } from "rxjs/operators";
-import { store } from "../../../shared/helpers/jwtCache";
+import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
+@UntilDestroy()
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -39,16 +40,20 @@ export class RegisterComponent implements OnInit {
   }
 
   private sendLoginForm(): void {
-    const userModel = <User>this.registerForm.value;
+    const user = <User>this.registerForm.value;
 
-    this.userService.register(userModel).pipe(
-      map(async (response) => {
-        console.log(response);
-      }),
-      catchError((err) => {
-        console.log(err);
-        return err;
-      })
-    );
+    this.userService
+      .register(user)
+      .pipe(
+        untilDestroyed(this),
+        map(async (response) => {
+          await this.router.navigate(["auth/login"]);
+        }),
+        catchError((err) => {
+          console.log(err);
+          return err;
+        })
+      )
+      .subscribe();
   }
 }

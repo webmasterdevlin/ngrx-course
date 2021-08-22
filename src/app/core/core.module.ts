@@ -4,8 +4,8 @@ import { AuthInterceptor } from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [],
-  imports: [HttpClientModule],
-  providers: [AuthInterceptor],
+  imports: [HttpClientModule, AuthInterceptor],
+  providers: [],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

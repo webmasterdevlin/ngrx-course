@@ -1,12 +1,11 @@
 import { HttpHeaderResponse, HttpHeaders } from "@angular/common/http";
-import { get } from "./jwtCache";
+import { getJwt } from "./jwtCache";
 
 export const AuthBearerAndContentTypeJsonHeaders = {
   options: new HttpHeaderResponse({
     headers: new HttpHeaders({
-      Authorization: "Bearer " + get(),
+      Authorization: "Bearer " + getJwt(),
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "no-cache",
     }),
   }),
 };

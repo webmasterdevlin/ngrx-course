@@ -2,14 +2,14 @@
 
 const key = "jwt";
 
-export const store = (value: any) => {
+export const storeJwt = (value: any) => {
   /* stringify it first */
   window.localStorage.setItem(key, JSON.stringify(value));
 };
 
 /* without type "any" as a fallback value in the generics,
  * it returns unknown type. */
-export const get = () => {
+export const getJwt = () => {
   /* get data from localStorage */
   const value: string | null = window.localStorage.getItem(key);
 
@@ -18,4 +18,8 @@ export const get = () => {
 
   /* parse the data from localStorage because the data is in string state */
   return JSON.parse(value);
+};
+
+export const removeJwt = () => {
+  window.localStorage.removeItem(key);
 };
