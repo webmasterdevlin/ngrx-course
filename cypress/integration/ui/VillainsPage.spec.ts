@@ -24,7 +24,7 @@ describe("Villains Page", () => {
     cy.getCommand("/api/v1/villains", VILLAINS);
     cy.deleteCommand("/api/v1/villains/*");
 
-    cy.visit("/");
+    cy.visit("/villains");
     cy.get("[data-testid=more]").click();
     cy.get("[data-testid=nav-villains]").click();
     cy.SetupInputFieldsCommand();
