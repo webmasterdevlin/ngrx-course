@@ -19,11 +19,13 @@ const HEROES = [
 
 describe("Heroes Page", () => {
   beforeEach(() => {
-    /* Custom commands. Please see support/commands.ts
-     * and the global.d.ts for intellisense */
+    /* register custom commands. */
     cy.getCommand("/heroes", HEROES);
     cy.deleteCommand("/heroes/*");
+
+    /* go to root domain */
     cy.visit("/");
+
     cy.SetupInputFieldsCommand();
   });
 
