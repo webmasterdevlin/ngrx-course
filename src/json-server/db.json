@@ -1,5 +1,5 @@
 {
-  "anti-heroes": [
+  "heroes": [
     {
       "id": "4893hfwuig",
       "firstName": "Eddy",
@@ -43,7 +43,6 @@
       "knownAs": "Magneto"
     }
   ],
-  "heroes": [],
   "villains": [
     {
       "firstName": "Lex",
