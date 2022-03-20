@@ -106,7 +106,7 @@ describe("Villains Page", () => {
       cy.get("@House").type(house);
       cy.get("@KnownAs").type(knownAs);
 
-      cy.postCommand("/villains", {
+      cy.postCommand("/api/villains", {
         firstName,
         lastName,
         house,
