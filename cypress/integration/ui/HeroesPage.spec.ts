@@ -20,8 +20,8 @@ const HEROES = [
 describe("Heroes Page", () => {
   beforeEach(() => {
     /* register custom commands. */
-    cy.getCommand("/heroes", HEROES);
-    cy.deleteCommand("/heroes/*");
+    cy.getCommand("/api/heroes", HEROES);
+    cy.deleteCommand("/api/heroes/*");
 
     /* go to root domain */
     cy.visit("/");

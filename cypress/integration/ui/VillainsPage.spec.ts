@@ -21,8 +21,8 @@ describe("Villains Page", () => {
   beforeEach(() => {
     /* Custom commands. Please see support/commands.ts
      * and the global.d.ts for intellisense */
-    cy.getCommand("/villains", VILLAINS);
-    cy.deleteCommand("/villains/*");
+    cy.getCommand("/api/villains", VILLAINS);
+    cy.deleteCommand("/api/villains/*");
 
     cy.visit("/");
     cy.get("[data-testid=more]").click();
