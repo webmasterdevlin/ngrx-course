@@ -10,11 +10,7 @@
     "serve:fullstack": "concurrently \"npm run backend\" \"npm run serve\"",
     "test": "npx cypress open",
     "test:open": "npx cypress open --browser edge",
-    "test:cypress-headed": "npx cypress --headed",
-    "tsc:check": "npm run tsc:src && npm run tsc:cypress",
-    "tsc:src": "tsc --noEmit --project tsconfig.json",
-    "tsc:cypress": "tsc --noEmit --project cypress/tsconfig.json",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "test:cypress-headed": "npx cypress --headed"
   },
   "private": true,
   "dependencies": {

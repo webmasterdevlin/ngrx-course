@@ -1,7 +1,6 @@
 // @ts-check
 ///<reference path="../global.d.ts" />
 /// <reference types="cypress"/>
-import "@cypress/code-coverage/support";
 import { v4 as uuidv4 } from "uuid";
 
 Cypress.Commands.add("getCommand", (url: string, responseBody: Array<any>) => {
