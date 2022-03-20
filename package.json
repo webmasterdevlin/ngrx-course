@@ -6,7 +6,7 @@
     "serve": "ng serve",
     "build": "ng build",
     "lint": "ng lint",
-    "backend": "json-server --watch db.json --port 5000 --delay=1000",
+    "backend": "json-server --watch src/json-server/db.json --port 5000 --delay=1000 --routes src/json-server/routes.json",
     "serve:fullstack": "concurrently \"npm run backend\" \"npm run serve\"",
     "test": "npx cypress open",
     "test:open": "npx cypress open --browser edge",
