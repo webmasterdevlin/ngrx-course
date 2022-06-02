@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Villain } from "../../villain.model";
 import { State } from "src/app/store";
@@ -22,14 +22,14 @@ import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 })
 export class VillainsComponent implements OnInit {
   villains: Villain[];
-  itemForm: FormGroup;
-  editedForm: FormGroup;
+  itemForm: UntypedFormGroup;
+  editedForm: UntypedFormGroup;
   isLoading = false;
   editingTracker = "0";
 
   constructor(
     private store: Store<State>,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router
   ) {}
 

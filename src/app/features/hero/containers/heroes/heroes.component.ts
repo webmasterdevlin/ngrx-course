@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { Store } from "@ngrx/store";
@@ -23,14 +23,14 @@ import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  itemForm: FormGroup;
-  editedForm: FormGroup;
+  itemForm: UntypedFormGroup;
+  editedForm: UntypedFormGroup;
   isLoading = false;
   editingTracker = "0";
 
   constructor(
     private store: Store<State>,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router
   ) {}
 
