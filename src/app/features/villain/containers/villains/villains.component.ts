@@ -1,36 +1,40 @@
-import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { Villain } from "../../villain.model";
-import { State } from "src/app/store";
-import { selectVillainStore } from "src/app/store/selectors/villain.selectors";
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { Villain } from '../../villain.model';
+import { State } from 'src/app/store';
+import { selectVillainStore } from 'src/app/store/selectors/villain.selectors';
 import {
   loadVillains,
   deleteVillain,
   createVillain,
   updateVillain,
   softDeleteVillain,
-} from "src/app/store/actions/villain.actions";
-import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+} from 'src/app/store/actions/villain.actions';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
-  selector: "app-villains",
-  templateUrl: "./villains.component.html",
-  styleUrls: ["./villains.component.css"],
+  selector: 'app-villains',
+  templateUrl: './villains.component.html',
+  styleUrls: ['./villains.component.css'],
 })
 export class VillainsComponent implements OnInit {
   villains: Villain[];
   itemForm: UntypedFormGroup;
   editedForm: UntypedFormGroup;
   isLoading = false;
-  editingTracker = "0";
+  editingTracker = '0';
 
   constructor(
     private store: Store<State>,
     private fb: UntypedFormBuilder,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +55,7 @@ export class VillainsComponent implements OnInit {
   }
 
   handleNavigateVillainDetail(id: string) {
-    this.router.navigateByUrl("/villains/villain-detail/" + id);
+    this.router.navigateByUrl('/villains/villain-detail/' + id);
   }
 
   handleSoftDeleteVillain(id: string) {
@@ -71,18 +75,18 @@ export class VillainsComponent implements OnInit {
 
   private formBuilderInit(): void {
     this.itemForm = this.fb.group({
-      firstName: ["", [Validators.required, Validators.minLength(4)]],
-      lastName: ["", [Validators.required, Validators.minLength(4)]],
-      house: [""],
-      knownAs: [""],
+      firstName: ['', [Validators.required, Validators.minLength(4)]],
+      lastName: ['', [Validators.required, Validators.minLength(4)]],
+      house: [''],
+      knownAs: [''],
     });
 
     this.editedForm = this.fb.group({
-      id: [""],
-      firstName: ["", [Validators.required, Validators.minLength(4)]],
-      lastName: ["", [Validators.required, Validators.minLength(4)]],
-      house: [""],
-      knownAs: [""],
+      id: [''],
+      firstName: ['', [Validators.required, Validators.minLength(4)]],
+      lastName: ['', [Validators.required, Validators.minLength(4)]],
+      house: [''],
+      knownAs: [''],
     });
   }
 }

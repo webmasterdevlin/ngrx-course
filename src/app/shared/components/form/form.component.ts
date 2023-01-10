@@ -4,13 +4,13 @@ import {
   Input,
   Output,
   ViewChild,
-} from "@angular/core";
-import { UntypedFormGroup, FormGroupDirective } from "@angular/forms";
+} from '@angular/core';
+import { UntypedFormGroup, FormGroupDirective } from '@angular/forms';
 
 @Component({
-  selector: "app-form",
-  templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.css"],
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
   @Input() itemForm: UntypedFormGroup | any;
@@ -26,10 +26,10 @@ export class FormComponent {
   }
 
   get fn() {
-    return this.itemForm.get("firstName");
+    return this.itemForm.get('firstName');
   }
 
   get ln() {
-    return this.itemForm.get("lastName");
+    return this.itemForm.get('lastName');
   }
 }

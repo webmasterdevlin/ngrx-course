@@ -6,7 +6,8 @@
 >
   <mat-form-field class="full-width">
     <mat-label>First Name</mat-label>
-    <input data-testid="firstName"
+    <input
+      data-testid="firstName"
       matInput
       type="text"
       formControlName="firstName"
@@ -20,7 +21,13 @@
   </mat-form-field>
   <mat-form-field class="full-width">
     <mat-label>Last Name</mat-label>
-    <input data-testid="lastName" matInput type="text" formControlName="lastName" autocomplete="off" />
+    <input
+      data-testid="lastName"
+      matInput
+      type="text"
+      formControlName="lastName"
+      autocomplete="off"
+    />
     <mat-error *ngIf="ln.invalid && (ln.dirty || ln.touched)">
       <span *ngIf="ln.errors.minlength">
         last name must be at least 4 characters long.
@@ -29,11 +36,23 @@
   </mat-form-field>
   <mat-form-field class="full-width">
     <mat-label>House</mat-label>
-    <input data-testid="house" matInput type="text" formControlName="house" autocomplete="off" />
+    <input
+      data-testid="house"
+      matInput
+      type="text"
+      formControlName="house"
+      autocomplete="off"
+    />
   </mat-form-field>
   <mat-form-field class="full-width">
     <mat-label>Known as</mat-label>
-    <input data-testid="knownAs" matInput type="text" formControlName="knownAs" autocomplete="off" />
+    <input
+      data-testid="knownAs"
+      matInput
+      type="text"
+      formControlName="knownAs"
+      autocomplete="off"
+    />
   </mat-form-field>
   <button
     data-testid="save-update-button"

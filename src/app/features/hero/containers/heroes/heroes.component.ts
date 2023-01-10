@@ -1,37 +1,41 @@
-import { Component, OnInit } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { Store } from "@ngrx/store";
-import { Hero } from "../../hero.model";
-import { State } from "src/app/store";
-import { selectHeroStore } from "src/app/store/selectors/hero.selectors";
+import { Store } from '@ngrx/store';
+import { Hero } from '../../hero.model';
+import { State } from 'src/app/store';
+import { selectHeroStore } from 'src/app/store/selectors/hero.selectors';
 import {
   loadHeroes,
   deleteHero,
   createHero,
   updateHero,
   softDeleteHero,
-} from "src/app/store/actions/hero.actions";
-import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+} from 'src/app/store/actions/hero.actions';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
-  selector: "app-heroes",
-  templateUrl: "./heroes.component.html",
-  styleUrls: ["./heroes.component.css"],
+  selector: 'app-heroes',
+  templateUrl: './heroes.component.html',
+  styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
   itemForm: UntypedFormGroup;
   editedForm: UntypedFormGroup;
   isLoading = false;
-  editingTracker = "0";
+  editingTracker = '0';
 
   constructor(
     private store: Store<State>,
     private fb: UntypedFormBuilder,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +60,7 @@ export class HeroesComponent implements OnInit {
   }
 
   handleNavigateHeroDetail(id: string) {
-    this.router.navigateByUrl("/heroes/hero-detail/" + id);
+    this.router.navigateByUrl('/heroes/hero-detail/' + id);
   }
 
   private fetchHeroes() {
@@ -72,18 +76,18 @@ export class HeroesComponent implements OnInit {
 
   private formBuilderInit(): void {
     this.itemForm = this.fb.group({
-      firstName: ["", [Validators.required, Validators.minLength(4)]],
-      lastName: ["", [Validators.required, Validators.minLength(4)]],
-      house: [""],
-      knownAs: [""],
+      firstName: ['', [Validators.required, Validators.minLength(4)]],
+      lastName: ['', [Validators.required, Validators.minLength(4)]],
+      house: [''],
+      knownAs: [''],
     });
 
     this.editedForm = this.fb.group({
-      id: [""],
-      firstName: ["", [Validators.required, Validators.minLength(4)]],
-      lastName: ["", [Validators.required, Validators.minLength(4)]],
-      house: [""],
-      knownAs: [""],
+      id: [''],
+      firstName: ['', [Validators.required, Validators.minLength(4)]],
+      lastName: ['', [Validators.required, Validators.minLength(4)]],
+      house: [''],
+      knownAs: [''],
     });
   }
 }

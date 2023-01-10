@@ -1,6 +1,6 @@
-import { createReducer, on } from "@ngrx/store";
-import * as VillainActions from "../actions/villain.actions";
-import { Villain } from "src/app/features/villain/villain.model";
+import { createReducer, on } from '@ngrx/store';
+import * as VillainActions from '../actions/villain.actions';
+import { Villain } from 'src/app/features/villain/villain.model';
 
 export interface VillainState {
   villains: Villain[];
@@ -11,14 +11,14 @@ export interface VillainState {
 export const initialState: VillainState = {
   villains: [],
   isLoading: false,
-  error: "",
+  error: '',
 };
 
 export const villainReducer = createReducer(
   initialState,
 
   /*loads the list of villains*/
-  on(VillainActions.loadVillains, (state) => ({
+  on(VillainActions.loadVillains, state => ({
     ...state,
     isLoading: true,
   })),
@@ -34,13 +34,13 @@ export const villainReducer = createReducer(
   })),
 
   /*deletes a villain*/
-  on(VillainActions.deleteVillain, (state) => ({
+  on(VillainActions.deleteVillain, state => ({
     ...state,
     isLoading: true,
   })),
   on(VillainActions.deleteVillainSuccess, (state, { id }) => ({
     ...state,
-    villains: state.villains.filter((h) => h.id !== id),
+    villains: state.villains.filter(h => h.id !== id),
     isLoading: false,
   })),
   on(VillainActions.deleteVillainFail, (state, { error }) => ({
@@ -50,7 +50,7 @@ export const villainReducer = createReducer(
   })),
 
   /*creates a villain*/
-  on(VillainActions.createVillain, (state) => ({
+  on(VillainActions.createVillain, state => ({
     ...state,
     isLoading: true,
   })),
@@ -66,13 +66,13 @@ export const villainReducer = createReducer(
   })),
 
   /*updates a villain*/
-  on(VillainActions.updateVillain, (state) => ({
+  on(VillainActions.updateVillain, state => ({
     ...state,
     isLoading: true,
   })),
   on(VillainActions.updateVillainSuccess, (state, { villain }) => ({
     ...state,
-    villains: state.villains.map((h) => (h.id === villain.id ? villain : h)),
+    villains: state.villains.map(h => (h.id === villain.id ? villain : h)),
     isLoading: false,
   })),
   on(VillainActions.updateVillainFail, (state, { error }) => ({
@@ -83,6 +83,6 @@ export const villainReducer = createReducer(
 
   on(VillainActions.softDeleteVillain, (state, { id }) => ({
     ...state,
-    villains: state.villains.filter((h) => h.id !== id),
-  }))
+    villains: state.villains.filter(h => h.id !== id),
+  })),
 );

@@ -1,6 +1,6 @@
-import { createReducer, on } from "@ngrx/store";
-import * as HeroActions from "../actions/hero.actions";
-import { Hero } from "src/app/features/hero/hero.model";
+import { createReducer, on } from '@ngrx/store';
+import * as HeroActions from '../actions/hero.actions';
+import { Hero } from 'src/app/features/hero/hero.model';
 
 export interface HeroState {
   heroes: Hero[];
@@ -11,14 +11,14 @@ export interface HeroState {
 export const initialState: HeroState = {
   heroes: [],
   isLoading: false,
-  error: "",
+  error: '',
 };
 
 export const heroReducer = createReducer(
   initialState,
 
   /*loads the list of heroes*/
-  on(HeroActions.loadHeroes, (state) => ({
+  on(HeroActions.loadHeroes, state => ({
     ...state,
     isLoading: true,
   })),
@@ -35,13 +35,13 @@ export const heroReducer = createReducer(
   })),
 
   /*deletes a hero*/
-  on(HeroActions.deleteHero, (state) => ({
+  on(HeroActions.deleteHero, state => ({
     ...state,
     isLoading: true,
   })),
   on(HeroActions.deleteHeroSuccess, (state, { id }) => ({
     ...state,
-    heroes: state.heroes.filter((h) => h.id !== id),
+    heroes: state.heroes.filter(h => h.id !== id),
     isLoading: false,
   })),
   on(HeroActions.deleteHeroFail, (state, { error }) => ({
@@ -51,7 +51,7 @@ export const heroReducer = createReducer(
   })),
 
   /*creates a hero*/
-  on(HeroActions.createHero, (state) => ({
+  on(HeroActions.createHero, state => ({
     ...state,
     isLoading: true,
   })),
@@ -67,13 +67,13 @@ export const heroReducer = createReducer(
   })),
 
   /*updates a hero*/
-  on(HeroActions.updateHero, (state) => ({
+  on(HeroActions.updateHero, state => ({
     ...state,
     isLoading: true,
   })),
   on(HeroActions.updateHeroSuccess, (state, { hero }) => ({
     ...state,
-    heroes: state.heroes.map((h) => (h.id === hero.id ? hero : h)),
+    heroes: state.heroes.map(h => (h.id === hero.id ? hero : h)),
     isLoading: false,
   })),
   on(HeroActions.updateHeroFail, (state, { error }) => ({
@@ -84,6 +84,6 @@ export const heroReducer = createReducer(
 
   on(HeroActions.softDeleteHero, (state, { id }) => ({
     ...state,
-    heroes: state.heroes.filter((h) => h.id !== id),
-  }))
+    heroes: state.heroes.filter(h => h.id !== id),
+  })),
 );

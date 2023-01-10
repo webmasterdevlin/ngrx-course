@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: "app-villain-detail",
-  templateUrl: "./villain-detail.component.html",
-  styleUrls: ["./villain-detail.component.css"],
+  selector: 'app-villain-detail',
+  templateUrl: './villain-detail.component.html',
+  styleUrls: ['./villain-detail.component.css'],
 })
 export class VillainDetailComponent implements OnInit {
   id: string;
@@ -16,6 +16,6 @@ export class VillainDetailComponent implements OnInit {
   }
 
   private getVillain(): void {
-    this.id = this.activatedRoute.snapshot.paramMap.get("id");
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
   }
 }

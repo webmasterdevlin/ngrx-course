@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { State } from "src/app/store";
-import { loadHeroes } from "src/app/store/actions/hero.actions";
-import { selectHeroStore } from "src/app/store/selectors/hero.selectors";
-import { loadVillains } from "src/app/store/actions/villain.actions";
-import { selectVillainStore } from "src/app/store/selectors/villain.selectors";
-import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/store';
+import { loadHeroes } from 'src/app/store/actions/hero.actions';
+import { selectHeroStore } from 'src/app/store/selectors/hero.selectors';
+import { loadVillains } from 'src/app/store/actions/villain.actions';
+import { selectVillainStore } from 'src/app/store/selectors/villain.selectors';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
-  selector: "app-nav-bar",
-  templateUrl: "./nav-bar.component.html",
-  styleUrls: ["./nav-bar.component.css"],
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
   totalHeroes = 0;

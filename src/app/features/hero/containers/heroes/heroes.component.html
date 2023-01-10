@@ -6,7 +6,7 @@
   ></app-form>
 </div>
 <app-character-list></app-character-list>
-<mat-card-content  *ngIf="isLoading">
+<mat-card-content *ngIf="isLoading">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </mat-card-content>
 <section>
@@ -14,12 +14,12 @@
     style="width: 100%; margin: 5rem 0; min-width: 16rem"
     *ngFor="let hero of heroes"
   >
-    <mat-card data-testid="card" style="width: auto;">
+    <mat-card data-testid="card" style="width: auto">
       <div *ngIf="editingTracker === hero.id">
         <mat-card-content>
           <app-form
             [itemForm]="editedForm"
-            [text]="isLoading ? 'SENDING':'UPDATE'"
+            [text]="isLoading ? 'SENDING' : 'UPDATE'"
             (handleSubmit)="handleUpdateHero()"
           ></app-form>
         </mat-card-content>
@@ -33,7 +33,7 @@
           <mat-card-subtitle>{{ hero.house }}</mat-card-subtitle>
         </mat-card-header>
       </div>
-      <mat-card-content *ngIf="isLoading && (editingTracker === hero.id)">
+      <mat-card-content *ngIf="isLoading && editingTracker === hero.id">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       </mat-card-content>
       <mat-card-actions>
@@ -64,10 +64,20 @@
         >
           DETAIL
         </button>
-        <button data-testid="soft-delete-button" mat-raised-button color="accent" (click)="handleSoftDeleteHero(hero.id)">
+        <button
+          data-testid="soft-delete-button"
+          mat-raised-button
+          color="accent"
+          (click)="handleSoftDeleteHero(hero.id)"
+        >
           SOFT DELETE
         </button>
-        <button data-testid="delete-button" mat-raised-button color="warn" (click)="handleDeleteHero(hero.id)">
+        <button
+          data-testid="delete-button"
+          mat-raised-button
+          color="warn"
+          (click)="handleDeleteHero(hero.id)"
+        >
           DELETE
         </button>
       </mat-card-actions>

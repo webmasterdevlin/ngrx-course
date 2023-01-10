@@ -1,32 +1,30 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "heroes",
-    pathMatch: "full",
+    path: '',
+    redirectTo: 'heroes',
+    pathMatch: 'full',
   },
   {
-    path: "heroes",
+    path: 'heroes',
     loadChildren: () =>
-      import("./features/hero/heroes.module").then((m) => m.HeroesModule),
+      import('./features/hero/heroes.module').then(m => m.HeroesModule),
   },
   {
-    path: "villains",
+    path: 'villains',
     loadChildren: () =>
-      import("./features/villain/villains.module").then(
-        (m) => m.VillainsModule
-      ),
+      import('./features/villain/villains.module').then(m => m.VillainsModule),
   },
   {
-    path: "**",
-    redirectTo: "",
+    path: '**',
+    redirectTo: '',
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
