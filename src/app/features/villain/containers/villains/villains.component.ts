@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Villain } from '../../villain.model';
 import { State } from 'src/app/store';
@@ -26,20 +22,32 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class VillainsComponent implements OnInit {
   villains: Villain[];
-  itemForm: UntypedFormGroup;
-  editedForm: UntypedFormGroup;
+
+  itemForm = this.fb.group({
+    firstName: ['', [Validators.required, Validators.minLength(4)]],
+    lastName: ['', [Validators.required, Validators.minLength(4)]],
+    house: [''],
+    knownAs: [''],
+  });
+
+  editedForm = this.fb.group({
+    id: [''],
+    firstName: ['', [Validators.required, Validators.minLength(4)]],
+    lastName: ['', [Validators.required, Validators.minLength(4)]],
+    house: [''],
+    knownAs: [''],
+  });
   isLoading = false;
   editingTracker = '0';
 
   constructor(
     private store: Store<State>,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.fetchVillains();
-    this.formBuilderInit();
   }
 
   handleDeleteVillain(id: string) {
@@ -47,11 +55,15 @@ export class VillainsComponent implements OnInit {
   }
 
   handleCreateVillain() {
-    this.store.dispatch(createVillain({ villain: this.itemForm.value }));
+    this.store.dispatch(
+      createVillain({ villain: this.itemForm.value as Villain }),
+    );
   }
 
   handleUpdateVillain() {
-    this.store.dispatch(updateVillain({ villain: this.editedForm.value }));
+    this.store.dispatch(
+      updateVillain({ villain: this.editedForm.value as Villain }),
+    );
   }
 
   handleNavigateVillainDetail(id: string) {
@@ -71,22 +83,5 @@ export class VillainsComponent implements OnInit {
         this.villains = villains;
         this.isLoading = isLoading;
       });
-  }
-
-  private formBuilderInit(): void {
-    this.itemForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(4)]],
-      lastName: ['', [Validators.required, Validators.minLength(4)]],
-      house: [''],
-      knownAs: [''],
-    });
-
-    this.editedForm = this.fb.group({
-      id: [''],
-      firstName: ['', [Validators.required, Validators.minLength(4)]],
-      lastName: ['', [Validators.required, Validators.minLength(4)]],
-      house: [''],
-      knownAs: [''],
-    });
   }
 }

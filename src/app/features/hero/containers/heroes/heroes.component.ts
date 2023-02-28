@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -27,19 +23,32 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  itemForm: UntypedFormGroup;
-  editedForm: UntypedFormGroup;
+
+  itemForm = this.fb.group({
+    firstName: ['', [Validators.required, Validators.minLength(4)]],
+    lastName: ['', [Validators.required, Validators.minLength(4)]],
+    house: [''],
+    knownAs: [''],
+  });
+
+  editedForm = this.fb.group({
+    id: [''],
+    firstName: ['', [Validators.required, Validators.minLength(4)]],
+    lastName: ['', [Validators.required, Validators.minLength(4)]],
+    house: [''],
+    knownAs: [''],
+  });
+
   isLoading = false;
   editingTracker = '0';
 
   constructor(
     private store: Store<State>,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.formBuilderInit();
     this.fetchHeroes();
   }
 
@@ -48,11 +57,11 @@ export class HeroesComponent implements OnInit {
   }
 
   handleCreateHero() {
-    this.store.dispatch(createHero({ hero: this.itemForm.value }));
+    this.store.dispatch(createHero({ hero: this.itemForm.value as Hero }));
   }
 
   handleUpdateHero() {
-    this.store.dispatch(updateHero({ hero: this.editedForm.value }));
+    this.store.dispatch(updateHero({ hero: this.editedForm.value as Hero }));
   }
 
   handleSoftDeleteHero(id: string) {
@@ -72,22 +81,5 @@ export class HeroesComponent implements OnInit {
         this.heroes = heroes;
         this.isLoading = isLoading;
       });
-  }
-
-  private formBuilderInit(): void {
-    this.itemForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(4)]],
-      lastName: ['', [Validators.required, Validators.minLength(4)]],
-      house: [''],
-      knownAs: [''],
-    });
-
-    this.editedForm = this.fb.group({
-      id: [''],
-      firstName: ['', [Validators.required, Validators.minLength(4)]],
-      lastName: ['', [Validators.required, Validators.minLength(4)]],
-      house: [''],
-      knownAs: [''],
-    });
   }
 }

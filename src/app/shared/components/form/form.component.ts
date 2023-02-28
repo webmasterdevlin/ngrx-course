@@ -5,7 +5,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { UntypedFormGroup, FormGroupDirective } from '@angular/forms';
+import { FormGroupDirective, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -13,7 +13,13 @@ import { UntypedFormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-  @Input() itemForm: UntypedFormGroup | any;
+  @Input() itemForm: FormGroup<{
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    knownAs: FormControl<string>;
+    house: FormControl<string>;
+  }>;
+
   @Input() text: string;
 
   @Output() handleSubmit = new EventEmitter<void>();
